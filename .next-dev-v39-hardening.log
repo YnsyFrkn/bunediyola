@@ -1,0 +1,1759 @@
+
+> bunediyola@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.25:3000
+- Environments: .env
+✓ Ready in 259ms
+Creating turbopack project { dir: 'C:\\Users\\PC\\Desktop\\bunediyola', testMode: true }
+
+ GET / 200 in 782ms (next.js: 310ms, application-code: 472ms)
+ GET /api/auth/session 200 in 617ms (next.js: 597ms, application-code: 19ms)
+ GET /admin 200 in 182ms (next.js: 31ms, application-code: 151ms)
+ GET / 200 in 198ms (next.js: 3ms, application-code: 195ms)
+ GET /api/auth/session 200 in 16ms (next.js: 8ms, application-code: 8ms)
+ GET /admin 200 in 69ms (next.js: 3ms, application-code: 66ms)
+ GET /admin/notifications 200 in 82ms (next.js: 20ms, application-code: 62ms)
+ GET /admin/notifications?filter=unread 200 in 40ms (next.js: 1974µs, application-code: 38ms)
+ GET /admin/notifications?filter=read 200 in 38ms (next.js: 2ms, application-code: 35ms)
+✓ Compiled in 164ms
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin 200 in 624ms (next.js: 201ms, application-code: 423ms)
+ GET /admin/notifications?filter=read 200 in 627ms (next.js: 73ms, application-code: 554ms)
+ GET /admin/notifications?filter=read 200 in 416ms (next.js: 5ms, application-code: 411ms)
+ GET /admin 200 in 396ms (next.js: 7ms, application-code: 389ms)
+ GET /admin/notifications?filter=read 200 in 411ms (next.js: 11ms, application-code: 400ms)
+ GET /admin/notifications?filter=read 200 in 421ms (next.js: 26ms, application-code: 395ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin/notifications?filter=read 200 in 384ms (next.js: 2ms, application-code: 382ms)
+ GET /admin/notifications?filter=read 200 in 365ms (next.js: 3ms, application-code: 362ms)
+ GET /admin/notifications?filter=read 200 in 356ms (next.js: 18ms, application-code: 338ms)
+ GET /admin/notifications?filter=read 200 in 358ms (next.js: 4ms, application-code: 353ms)
+ GET /admin/notifications?filter=read 200 in 380ms (next.js: 7ms, application-code: 373ms)
+ GET /admin/notifications?filter=read 200 in 364ms (next.js: 11ms, application-code: 353ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin/notifications?filter=read 200 in 382ms (next.js: 3ms, application-code: 379ms)
+ GET /admin/notifications?filter=read 200 in 383ms (next.js: 22ms, application-code: 360ms)
+ GET /admin/notifications?filter=read 200 in 358ms (next.js: 3ms, application-code: 355ms)
+ GET /admin/notifications?filter=read 200 in 380ms (next.js: 23ms, application-code: 357ms)
+ GET /admin 200 in 343ms (next.js: 8ms, application-code: 335ms)
+ GET /admin 200 in 358ms (next.js: 37ms, application-code: 321ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin 200 in 393ms (next.js: 2ms, application-code: 391ms)
+ GET /admin 200 in 376ms (next.js: 5ms, application-code: 371ms)
+ GET /admin 200 in 364ms (next.js: 8ms, application-code: 357ms)
+ GET /admin 200 in 376ms (next.js: 24ms, application-code: 352ms)
+ GET /admin 200 in 338ms (next.js: 8ms, application-code: 330ms)
+ GET /admin 200 in 351ms (next.js: 9ms, application-code: 341ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin 200 in 262ms (next.js: 2ms, application-code: 260ms)
+ GET /admin 200 in 246ms (next.js: 4ms, application-code: 242ms)
+ GET /admin 200 in 222ms (next.js: 4ms, application-code: 218ms)
+ GET /admin 200 in 204ms (next.js: 19ms, application-code: 186ms)
+✓ Compiled in 76ms
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_00pce6k._.js:1085:152
+
+  1082 }
+  1083 async function getUnreadNotificationCount() {
+  1084     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 1085     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+             select: {
+               _count: {
+                 select: {
+                   _all: true
+                 }
+               }
+             },
+             where: {
+               isRead: false,
+               deletedAt: null,
+               ~~~~~~~~~
+           ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+           ?   OR?: NotificationWhereInput[],
+           ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+           ?   id?: StringFilter | String,
+           ?   type?: EnumNotificationTypeFilter | NotificationType,
+           ?   title?: StringFilter | String,
+           ?   message?: StringFilter | String,
+           ?   targetUrl?: StringNullableFilter | String | Null,
+           ?   dedupeKey?: StringNullableFilter | String | Null,
+           ?   createdAt?: DateTimeFilter | DateTime,
+           ?   updatedAt?: DateTimeFilter | DateTime
+             }
+           })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin/notifications?filter=read 200 in 498ms (next.js: 70ms, application-code: 428ms)
+ GET /admin 200 in 498ms (next.js: 234ms, application-code: 265ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:240:152
+
+  237 }
+  238 async function getUnreadNotificationCount() {
+  239     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 240     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+            select: {
+              _count: {
+                select: {
+                  _all: true
+                }
+              }
+            },
+            where: {
+              isRead: false,
+              deletedAt: null,
+              ~~~~~~~~~
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            }
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:216:149
+
+  213 const currentPage = Math.max(1, page);
+  214 const where = getNotificationWhere(filter);
+  215 const [notifications, totalCount] = await Promise.all([
+→ 216     __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.findMany({
+            where: {
+              deletedAt: null,
+              ~~~~~~~~~
+              isRead: true,
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            },
+            orderBy: {
+              createdAt: "desc"
+            },
+            take: 20,
+            skip: 0
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:224:149
+
+  221     take: NOTIFICATION_PAGE_SIZE,
+  222     skip: (currentPage - 1) * NOTIFICATION_PAGE_SIZE
+  223 }),
+→ 224 __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+        select: {
+          _count: {
+            select: {
+              _all: true
+            }
+          }
+        },
+        where: {
+          deletedAt: null,
+          ~~~~~~~~~
+          isRead: true,
+      ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+      ?   OR?: NotificationWhereInput[],
+      ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+      ?   id?: StringFilter | String,
+      ?   type?: EnumNotificationTypeFilter | NotificationType,
+      ?   title?: StringFilter | String,
+      ?   message?: StringFilter | String,
+      ?   targetUrl?: StringNullableFilter | String | Null,
+      ?   dedupeKey?: StringNullableFilter | String | Null,
+      ?   createdAt?: DateTimeFilter | DateTime,
+      ?   updatedAt?: DateTimeFilter | DateTime
+        }
+      })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count()` invocation in
+C:\Users\PC\Desktop\bunediyola\.next\dev\server\chunks\ssr\_05nuzly._.js:240:152
+
+  237 }
+  238 async function getUnreadNotificationCount() {
+  239     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureAdminSession"])();
+→ 240     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].notification.count({
+            select: {
+              _count: {
+                select: {
+                  _all: true
+                }
+              }
+            },
+            where: {
+              isRead: false,
+              deletedAt: null,
+              ~~~~~~~~~
+          ?   AND?: NotificationWhereInput | NotificationWhereInput[],
+          ?   OR?: NotificationWhereInput[],
+          ?   NOT?: NotificationWhereInput | NotificationWhereInput[],
+          ?   id?: StringFilter | String,
+          ?   type?: EnumNotificationTypeFilter | NotificationType,
+          ?   title?: StringFilter | String,
+          ?   message?: StringFilter | String,
+          ?   targetUrl?: StringNullableFilter | String | Null,
+          ?   dedupeKey?: StringNullableFilter | String | Null,
+          ?   createdAt?: DateTimeFilter | DateTime,
+          ?   updatedAt?: DateTimeFilter | DateTime
+            }
+          })
+
+Unknown argument `deletedAt`. Available options are marked with ?.
+ GET /admin 200 in 402ms (next.js: 140ms, application-code: 263ms)
+ GET /admin/notifications?filter=read 200 in 404ms (next.js: 82ms, application-code: 322ms)
+ GET /admin 200 in 219ms (next.js: 32ms, application-code: 188ms)
+ GET /admin/notifications?filter=read 200 in 221ms (next.js: 4ms, application-code: 217ms)
+ GET /admin 500 in 163ms (next.js: 89ms, application-code: 74ms)
+ GET /admin/notifications?filter=read 500 in 165ms (next.js: 159ms, application-code: 6ms)
+[?25h

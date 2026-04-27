@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-manrope), sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-heading), serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+::selection {
+  background: #fdba74;
+  color: #111827;
+}

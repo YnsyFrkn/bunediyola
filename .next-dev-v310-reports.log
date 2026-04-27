@@ -1,0 +1,41 @@
+
+> bunediyola@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.25:3000
+- Environments: .env
+✓ Ready in 324ms
+Creating turbopack project { dir: 'C:\\Users\\PC\\Desktop\\bunediyola', testMode: true }
+
+ GET / 200 in 156ms (next.js: 3ms, application-code: 153ms)
+ GET /api/auth/session 200 in 671ms (next.js: 654ms, application-code: 17ms)
+ GET /yazi/kaydetmelik-12-mini-liste-gunluk-hayati-kolaylastiran-fikirler 200 in 453ms (next.js: 381ms, application-code: 72ms)
+ GET /api/auth/providers 200 in 14ms (next.js: 7ms, application-code: 8ms)
+ GET /api/auth/csrf 200 in 7ms (next.js: 1789µs, application-code: 5ms)
+ POST /api/auth/callback/credentials? 200 in 90ms (next.js: 1202µs, application-code: 88ms)
+ GET /api/auth/providers 200 in 13ms (next.js: 8ms, application-code: 5ms)
+ GET /api/auth/csrf 200 in 6ms (next.js: 2ms, application-code: 4ms)
+ POST /api/auth/callback/credentials? 200 in 71ms (next.js: 1504µs, application-code: 69ms)
+ GET /api/auth/session 200 in 63ms (next.js: 5ms, application-code: 58ms)
+ GET /yazi/kaydetmelik-12-mini-liste-gunluk-hayati-kolaylastiran-fikirler 200 in 82ms (next.js: 7ms, application-code: 75ms)
+ POST /yazi/kaydetmelik-12-mini-liste-gunluk-hayati-kolaylastiran-fikirler 200 in 123ms (next.js: 7ms, application-code: 116ms)
+  └─ ƒ createCommentReport("cmohg3aeg0006tw68z7tth9ni", {"message":"","success":false}, {}) in 31ms src/actions/reportActions.ts
+ POST /yazi/kaydetmelik-12-mini-liste-gunluk-hayati-kolaylastiran-fikirler 200 in 30ms (next.js: 12ms, application-code: 18ms)
+  └─ ƒ createPostReport("cmod97oh9000ttwy0nwlge5yr", {"message":"","success":false}, {}) in 10ms src/actions/reportActions.ts
+ POST /yazi/kaydetmelik-12-mini-liste-gunluk-hayati-kolaylastiran-fikirler 200 in 21ms (next.js: 8ms, application-code: 13ms)
+  └─ ƒ createPostReport("cmod97oh9000ttwy0nwlge5yr", {"message":"","success":false}, {}) in 8ms src/actions/reportActions.ts
+ GET / 200 in 153ms (next.js: 2ms, application-code: 151ms)
+ GET /profil/favorites 200 in 93ms (next.js: 44ms, application-code: 49ms)
+ GET /profil/favorites?page=2 200 in 35ms (next.js: 1949µs, application-code: 33ms)
+ GET /profil/settings 200 in 72ms (next.js: 41ms, application-code: 31ms)
+ GET /profil/settings 200 in 92ms (next.js: 2ms, application-code: 90ms)
+ GET /api/auth/session 200 in 19ms (next.js: 10ms, application-code: 8ms)
+ GET /profil/comments 200 in 69ms (next.js: 31ms, application-code: 38ms)
+ GET /profil 200 in 93ms (next.js: 41ms, application-code: 52ms)
+ GET / 200 in 81ms (next.js: 3ms, application-code: 78ms)
+ GET /api/auth/csrf 200 in 16ms (next.js: 9ms, application-code: 8ms)
+ POST /api/auth/signout 200 in 11ms (next.js: 1159µs, application-code: 10ms)
+ GET / 200 in 133ms (next.js: 3ms, application-code: 130ms)
+ GET / 200 in 82ms (next.js: 6ms, application-code: 77ms)

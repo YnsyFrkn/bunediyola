@@ -1,0 +1,559 @@
+2026-04-24 21:36:28.832 +03 [5512] LOG:  starting PostgreSQL 16.13, compiled by Visual C++ build 1944, 64-bit
+2026-04-24 21:36:28.835 +03 [5512] LOG:  listening on IPv6 address "::1", port 5433
+2026-04-24 21:36:28.835 +03 [5512] LOG:  listening on IPv4 address "127.0.0.1", port 5433
+2026-04-24 21:36:28.859 +03 [8112] LOG:  database system was shut down at 2026-04-24 21:36:20 +03
+2026-04-24 21:36:28.873 +03 [5512] LOG:  database system is ready to accept connections
+2026-04-24 21:37:20.531 +03 [10532] ERROR:  database "bunediyola_v2" already exists
+2026-04-24 21:37:20.531 +03 [10532] STATEMENT:  CREATE DATABASE bunediyola_v2;
+2026-04-24 21:38:18.171 +03 [360] ERROR:  relation "public.Category" does not exist at character 13
+2026-04-24 21:38:18.171 +03 [360] STATEMENT:  INSERT INTO "public"."Category" ("id","name","slug","description","createdAt","updatedAt") VALUES ($1,$2,$3,$4,$5,$6) ON CONFLICT ("slug") DO UPDATE SET "name" = $7, "description" = $8, "updatedAt" = $9 WHERE ("public"."Category"."slug" = $10 AND 1=1) RETURNING "public"."Category"."id", "public"."Category"."name", "public"."Category"."slug", "public"."Category"."description", "public"."Category"."createdAt", "public"."Category"."updatedAt"
+2026-04-24 21:38:18.762 +03 [14940] ERROR:  relation "_prisma_migrations" does not exist at character 126
+2026-04-24 21:38:18.762 +03 [14940] STATEMENT:  SELECT "id", "checksum", "finished_at", "migration_name", "logs", "rolled_back_at", "started_at", "applied_steps_count" FROM "_prisma_migrations" ORDER BY "started_at" ASC
+2026-04-24 21:38:18.960 +03 [11120] LOG:  checkpoint starting: immediate force wait
+2026-04-24 21:38:19.191 +03 [11120] LOG:  checkpoint complete: wrote 1008 buffers (6.2%); 1 WAL file(s) added, 0 removed, 0 recycled; write=0.062 s, sync=0.133 s, total=0.231 s; sync files=310, longest=0.002 s, average=0.001 s; distance=9416 kB, estimate=9416 kB; lsn=0/1EAA320, redo lsn=0/1EAA2E8
+2026-04-24 21:38:19.461 +03 [11120] LOG:  checkpoint starting: immediate force wait
+2026-04-24 21:38:19.472 +03 [11120] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.003 s, total=0.012 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4604 kB, estimate=8935 kB; lsn=0/23296A0, redo lsn=0/2329668
+2026-04-24 21:39:07.402 +03 [12864] ERROR:  unterminated quoted identifier at or near "" Category\;" at character 36
+2026-04-24 21:39:07.402 +03 [12864] STATEMENT:  SELECT COUNT(*) AS categories FROM " Category\;
+2026-04-24 21:39:28.087 +03 [10276] ERROR:  relation "post" does not exist at character 31
+2026-04-24 21:39:28.087 +03 [10276] STATEMENT:  SELECT COUNT(*) AS posts FROM Post;
+2026-04-24 21:39:28.114 +03 [13588] ERROR:  relation "category" does not exist at character 36
+2026-04-24 21:39:28.114 +03 [13588] STATEMENT:  SELECT COUNT(*) AS categories FROM Category;
+2026-04-24 21:40:21.978 +03 [10848] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:40:21.978 +03 [15380] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:40:21.978 +03 [15388] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:40:21.978 +03 [15416] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:40:21.978 +03 [15408] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:40:21.980 +03 [15436] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:43:19.473 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 21:43:31.232 +03 [11120] LOG:  checkpoint complete: wrote 118 buffers (0.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=11.732 s, sync=0.024 s, total=11.760 s; sync files=64, longest=0.001 s, average=0.001 s; distance=405 kB, estimate=8082 kB; lsn=0/238EDE0, redo lsn=0/238EDA8
+2026-04-24 21:48:11.392 +03 [2008] FATAL:  password authentication failed for user "postgres"
+2026-04-24 21:48:11.392 +03 [2008] DETAIL:  Connection matched file "c:/Users/PC/Desktop/bunediyola/.postgres-data/pg_hba.conf" line 117: "host    all             all             ::1/128                 scram-sha-256"
+2026-04-24 21:53:38.715 +03 [16068] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:55:50.761 +03 [13036] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 21:58:41.463 +03 [16168] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:05:04.399 +03 [11056] ERROR:  relation "category" does not exist at character 15
+2026-04-24 22:05:04.399 +03 [11056] STATEMENT:  select * from category
+2026-04-24 22:05:12.882 +03 [11056] ERROR:  relation "category" does not exist at character 15
+2026-04-24 22:05:12.882 +03 [11056] STATEMENT:  select * from Category
+2026-04-24 22:05:23.371 +03 [11056] ERROR:  relation "post" does not exist at character 15
+2026-04-24 22:05:23.371 +03 [11056] STATEMENT:  select * from Post
+2026-04-24 22:05:38.400 +03 [11056] ERROR:  relation "post" does not exist at character 14
+2026-04-24 22:05:38.400 +03 [11056] STATEMENT:  select  from Post
+2026-04-24 22:10:32.631 +03 [3572] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:10:32.631 +03 [16060] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:10:32.631 +03 [7328] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:10:32.632 +03 [972] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:10:32.633 +03 [7704] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:10:32.633 +03 [17104] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:13:19.235 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:13:20.045 +03 [11120] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.803 s, sync=0.003 s, total=0.811 s; sync files=7, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=7274 kB; lsn=0/2390810, redo lsn=0/23907D8
+2026-04-24 22:18:19.046 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:18:19.454 +03 [11120] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.402 s, sync=0.003 s, total=0.409 s; sync files=5, longest=0.001 s, average=0.001 s; distance=6 kB, estimate=6548 kB; lsn=0/23922F0, redo lsn=0/23922B8
+2026-04-24 22:22:33.509 +03 [14604] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:22:33.509 +03 [14800] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:22:33.509 +03 [10072] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:22:33.509 +03 [1360] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:22:33.509 +03 [14712] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:22:33.509 +03 [2176] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:23:19.454 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:23:19.561 +03 [11120] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.101 s, sync=0.002 s, total=0.107 s; sync files=2, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=5893 kB; lsn=0/23930C0, redo lsn=0/2393088
+2026-04-24 22:28:19.561 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:28:19.969 +03 [11120] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.401 s, sync=0.003 s, total=0.408 s; sync files=5, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=5304 kB; lsn=0/2394CC8, redo lsn=0/2394C90
+2026-04-24 22:29:25.127 +03 [11120] LOG:  checkpoint starting: immediate force wait
+2026-04-24 22:29:25.134 +03 [11120] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.008 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4624 kB, estimate=5236 kB; lsn=0/2818DB8, redo lsn=0/2818D80
+2026-04-24 22:29:25.403 +03 [11120] LOG:  checkpoint starting: immediate force wait
+2026-04-24 22:29:25.413 +03 [11120] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.004 s, total=0.010 s; sync files=7, longest=0.001 s, average=0.001 s; distance=4624 kB, estimate=5175 kB; lsn=0/2C9CFA8, redo lsn=0/2C9CF70
+2026-04-24 22:29:34.598 +03 [8600] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:34.605 +03 [11928] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:34.646 +03 [14836] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:34.646 +03 [14656] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:34.646 +03 [6712] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:50.232 +03 [2172] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:50.232 +03 [15932] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:29:50.232 +03 [17020] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:30:26.199 +03 [14748] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:30:26.201 +03 [10588] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:30:26.201 +03 [2604] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:30:26.202 +03 [14616] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:34:25.413 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:34:26.128 +03 [11120] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.708 s, sync=0.004 s, total=0.716 s; sync files=8, longest=0.001 s, average=0.001 s; distance=15 kB, estimate=4659 kB; lsn=0/2CA0C30, redo lsn=0/2CA0BF8
+2026-04-24 22:39:25.128 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:39:25.236 +03 [11120] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.108 s; sync files=2, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=4194 kB; lsn=0/2CA1D20, redo lsn=0/2CA1CE8
+2026-04-24 22:39:41.112 +03 [5496] ERROR:  syntax error at or near "post" at character 9
+2026-04-24 22:39:41.112 +03 [5496] STATEMENT:  delete  post where id=cmodataqc0005twr0cs9zjyqh 
+2026-04-24 22:39:55.687 +03 [11128] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:39:55.688 +03 [6712] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:39:55.688 +03 [13208] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:40:00.251 +03 [5496] ERROR:  relation "post" does not exist at character 13
+2026-04-24 22:40:00.251 +03 [5496] STATEMENT:  delete from post where id='cmodataqc0005twr0cs9zjyqh' 
+2026-04-24 22:40:07.610 +03 [5496] ERROR:  syntax error at or near "post" at character 9
+2026-04-24 22:40:07.610 +03 [5496] STATEMENT:  delete  post where id='cmodataqc0005twr0cs9zjyqh' 
+2026-04-24 22:40:23.260 +03 [5496] ERROR:  syntax error at or near ""Post"" at character 9
+2026-04-24 22:40:23.260 +03 [5496] STATEMENT:  delete  "Post" where id='cmodataqc0005twr0cs9zjyqh' 
+2026-04-24 22:41:04.316 +03 [13048] ERROR:  relation "post" does not exist at character 38
+2026-04-24 22:41:04.316 +03 [13048] STATEMENT:  SELECT COUNT(*) AS active_posts FROM Post WHERE deletedAt IS NULL; SELECT COUNT(*) AS deleted_posts FROM Post WHERE deletedAt IS NOT NULL; SELECT COUNT(*) AS active_categories FROM Category WHERE deletedAt IS NULL; SELECT COUNT(*) AS deleted_categories FROM Category WHERE deletedAt IS NOT NULL;
+2026-04-24 22:41:58.612 +03 [8508] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:41:58.612 +03 [17204] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:41:58.612 +03 [2908] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:42:07.335 +03 [13684] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:42:07.335 +03 [4268] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:44:25.237 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:44:25.848 +03 [11120] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.604 s, sync=0.004 s, total=0.612 s; sync files=7, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=3775 kB; lsn=0/2CA44D8, redo lsn=0/2CA44A0
+2026-04-24 22:46:13.786 +03 [10588] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:46:13.786 +03 [1964] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:46:13.786 +03 [8980] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 22:49:25.849 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:49:25.978 +03 [11120] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.122 s, sync=0.003 s, total=0.129 s; sync files=2, longest=0.002 s, average=0.002 s; distance=5 kB, estimate=3398 kB; lsn=0/2CA58F0, redo lsn=0/2CA58B8
+2026-04-24 22:54:25.979 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 22:54:26.185 +03 [11120] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.201 s, sync=0.002 s, total=0.207 s; sync files=3, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=3059 kB; lsn=0/2CA75B8, redo lsn=0/2CA7580
+2026-04-24 23:16:31.639 +03 [11120] LOG:  checkpoint starting: immediate force wait
+2026-04-24 23:16:31.656 +03 [11120] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.003 s, sync=0.003 s, total=0.017 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4625 kB, estimate=4625 kB; lsn=0/312BCE0, redo lsn=0/312BCA8
+2026-04-24 23:16:31.909 +03 [11120] LOG:  checkpoint starting: immediate force wait
+2026-04-24 23:16:31.916 +03 [11120] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.008 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4626 kB, estimate=4626 kB; lsn=0/35B0510, redo lsn=0/35B04D8
+2026-04-24 23:17:37.720 +03 [1784] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:17:37.720 +03 [6280] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:17:37.721 +03 [1640] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:17:55.300 +03 [15308] ERROR:  unterminated quoted identifier at or near "" User\" at character 25
+2026-04-24 23:17:55.300 +03 [15308] STATEMENT:  SELECT email, role FROM " User\
+2026-04-24 23:18:50.173 +03 [13080] ERROR:  column "email" does not exist at character 8
+2026-04-24 23:18:50.173 +03 [13080] STATEMENT:  SELECT email, role FROM User ORDER BY email;
+2026-04-24 23:19:06.804 +03 [2248] ERROR:  relation "public.user" does not exist at character 25
+2026-04-24 23:19:06.804 +03 [2248] STATEMENT:  SELECT email, role FROM public.User ORDER BY email;
+2026-04-24 23:21:09.827 +03 [356] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:21:09.827 +03 [15780] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:21:09.827 +03 [7048] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:21:31.916 +03 [11120] LOG:  checkpoint starting: time
+2026-04-24 23:21:36.645 +03 [11120] LOG:  checkpoint complete: wrote 48 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.712 s, sync=0.014 s, total=4.730 s; sync files=43, longest=0.001 s, average=0.001 s; distance=168 kB, estimate=4180 kB; lsn=0/35DA5C8, redo lsn=0/35DA590
+2026-04-24 23:25:17.484 +03 [9748] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:25:17.484 +03 [2156] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:25:17.484 +03 [5744] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:25:17.484 +03 [1876] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:29:56.386 +03 [16168] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:29:56.387 +03 [17324] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:31:44.110 +03 [5496] ERROR:  relation "Admin" does not exist at character 50
+2026-04-24 23:31:44.110 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "Admin"
+	ORDER BY "createdAt" DESC;
+	
+2026-04-24 23:31:48.891 +03 [5496] ERROR:  relation "Adm\u0131n" does not exist at character 50
+2026-04-24 23:31:48.891 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "Adm\u0131n"
+	ORDER BY "createdAt" DESC;
+2026-04-24 23:31:57.449 +03 [5496] ERROR:  relation "admin" does not exist at character 50
+2026-04-24 23:31:57.449 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "admin"
+	ORDER BY "createdAt" DESC;
+	
+	
+	
+	delete from  "Post" where id='cmodakudm0003twr0ar8c1l5e' 
+2026-04-24 23:31:58.648 +03 [5496] ERROR:  relation "admin" does not exist at character 50
+2026-04-24 23:31:58.648 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "admin"
+	ORDER BY "createdAt" DESC;
+	
+	
+2026-04-24 23:32:06.417 +03 [5496] ERROR:  relation "ADMIN" does not exist at character 50
+2026-04-24 23:32:06.417 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "ADMIN"
+	ORDER BY "createdAt" DESC;
+	
+2026-04-24 23:32:16.700 +03 [5496] ERROR:  relation "admin" does not exist at character 15
+2026-04-24 23:32:16.700 +03 [5496] STATEMENT:  select * from admin
+	
+2026-04-24 23:32:17.514 +03 [5496] ERROR:  syntax error at or near "from" at character 116
+2026-04-24 23:32:17.514 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "ADMIN"
+	ORDER BY "createdAt" DESC;
+	
+	select * from admin
+	
+	
+	
+	delete from  "Post" where id='cmodakudm0003twr0ar8c1l5e' 
+2026-04-24 23:32:23.329 +03 [5496] ERROR:  relation "ADMIN" does not exist at character 50
+2026-04-24 23:32:23.329 +03 [5496] STATEMENT:  SELECT id, title, slug, status, "createdAt"
+	FROM "ADMIN"
+	ORDER BY "createdAt" DESC;
+	
+	
+	
+	
+2026-04-24 23:32:38.597 +03 [5184] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:32:38.597 +03 [12620] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:32:38.597 +03 [15944] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:50.154 +03 [5496] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:50.154 +03 [10856] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:50.154 +03 [14808] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:50.159 +03 [9140] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:50.160 +03 [6176] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:51.699 +03 [2172] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:51.701 +03 [15928] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-24 23:39:51.702 +03 [10376] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 17:56:35.775 +03 [5720] LOG:  starting PostgreSQL 16.13, compiled by Visual C++ build 1944, 64-bit
+2026-04-26 17:56:35.778 +03 [5720] LOG:  listening on IPv6 address "::1", port 5433
+2026-04-26 17:56:35.778 +03 [5720] LOG:  listening on IPv4 address "127.0.0.1", port 5433
+2026-04-26 17:56:35.807 +03 [14680] LOG:  database system was interrupted; last known up at 2026-04-24 23:21:36 +03
+2026-04-26 17:56:37.352 +03 [14680] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-04-26 17:56:37.356 +03 [14680] LOG:  redo starts at 0/35DA590
+2026-04-26 17:56:37.356 +03 [14680] LOG:  invalid record length at 0/35DA678: expected at least 24, got 0
+2026-04-26 17:56:37.356 +03 [14680] LOG:  redo done at 0/35DA640 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-04-26 17:56:37.364 +03 [14880] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-04-26 17:56:37.371 +03 [14880] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.013 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/35DA678, redo lsn=0/35DA678
+2026-04-26 17:56:37.391 +03 [5720] LOG:  database system is ready to accept connections
+2026-04-26 17:56:53.313 +03 [14724] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 17:56:53.313 +03 [14088] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 17:56:53.313 +03 [15024] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:01:07.169 +03 [1520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:01:07.169 +03 [11296] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:01:07.169 +03 [15284] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:06:28.287 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 18:06:28.298 +03 [14880] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.005 s, total=0.011 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4648 kB, estimate=4648 kB; lsn=0/3A64708, redo lsn=0/3A646D0
+2026-04-26 18:06:28.553 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 18:06:28.565 +03 [14880] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.007 s, total=0.013 s; sync files=9, longest=0.001 s, average=0.001 s; distance=4648 kB, estimate=4648 kB; lsn=0/3EEE878, redo lsn=0/3EEE840
+2026-04-26 18:07:37.036 +03 [13996] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:07:37.036 +03 [6016] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:07:37.036 +03 [12012] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:10:53.355 +03 [13796] ERROR:  relation "category" does not exist at character 15
+2026-04-26 18:10:53.355 +03 [13796] STATEMENT:  select * from Category
+2026-04-26 18:10:57.176 +03 [13796] ERROR:  syntax error at or near "'Category'" at character 15
+2026-04-26 18:10:57.176 +03 [13796] STATEMENT:  select * from 'Category'
+2026-04-26 18:11:28.586 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 18:11:32.318 +03 [14880] LOG:  checkpoint complete: wrote 38 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.712 s, sync=0.017 s, total=3.733 s; sync files=36, longest=0.002 s, average=0.001 s; distance=155 kB, estimate=4199 kB; lsn=0/3F155F0, redo lsn=0/3F155B8
+2026-04-26 18:12:28.676 +03 [13796] ERROR:  syntax error at or near "desc" at character 37
+2026-04-26 18:12:28.676 +03 [13796] STATEMENT:  select * from "Post" where createAt desc
+2026-04-26 18:12:29.969 +03 [13796] ERROR:  syntax error at or near "desc" at character 37
+2026-04-26 18:12:29.969 +03 [13796] STATEMENT:  select * from "Post" where createAt desc
+2026-04-26 18:12:46.755 +03 [13796] ERROR:  syntax error at or near "order" at character 28
+2026-04-26 18:12:46.755 +03 [13796] STATEMENT:  select * from "Post" where order by createAt desc
+2026-04-26 18:12:57.643 +03 [13796] ERROR:  syntax error at or near "and" at character 28
+2026-04-26 18:12:57.643 +03 [13796] STATEMENT:  select * from "Post" where and ORDER BY createAt desc
+2026-04-26 18:14:03.427 +03 [13796] ERROR:  syntax error at or near "where" at character 2
+2026-04-26 18:14:03.427 +03 [13796] STATEMENT:   where and ORDER BY createAt desc
+2026-04-26 18:14:06.590 +03 [13796] ERROR:  syntax error at or near "where" at character 1
+2026-04-26 18:14:06.590 +03 [13796] STATEMENT:  where and ORDER BY createAt desc
+2026-04-26 18:14:09.702 +03 [13796] ERROR:  syntax error at or near "where" at character 2
+2026-04-26 18:14:09.702 +03 [13796] STATEMENT:   where and ORDER BY createAt desc
+2026-04-26 18:14:26.126 +03 [13796] ERROR:  syntax error at or near "and" at character 28
+2026-04-26 18:14:26.126 +03 [13796] STATEMENT:  select * from "Post" where and ORDER BY createdAt desc
+2026-04-26 18:14:31.763 +03 [13796] ERROR:  syntax error at or near "ORDER" at character 29
+2026-04-26 18:14:31.763 +03 [13796] STATEMENT:  select * from "Post" where  ORDER BY createdAt desc
+2026-04-26 18:15:06.409 +03 [13796] ERROR:  syntax error at or near "," at character 7
+2026-04-26 18:15:06.409 +03 [13796] STATEMENT:  select,   "createdAt" * from "Post"   ORDER BY "createdAt" desc
+	
+	
+2026-04-26 18:15:09.121 +03 [13796] ERROR:  syntax error at or near "from" at character 24
+2026-04-26 18:15:09.121 +03 [13796] STATEMENT:  select   "createdAt" * from "Post"   ORDER BY "createdAt" desc
+	
+	
+2026-04-26 18:15:10.953 +03 [13796] ERROR:  syntax error at or near "from" at character 24
+2026-04-26 18:15:10.953 +03 [13796] STATEMENT:  select   "createdAt" * from "Post"   ORDER BY "createdAt" desc
+	
+	
+2026-04-26 18:15:11.220 +03 [13796] ERROR:  syntax error at or near "from" at character 24
+2026-04-26 18:15:11.220 +03 [13796] STATEMENT:  select   "createdAt" * from "Post"   ORDER BY "createdAt" desc
+	
+	
+2026-04-26 18:16:00.423 +03 [13796] ERROR:  syntax error at or near "3" at character 64
+2026-04-26 18:16:00.423 +03 [13796] STATEMENT:  select "createdAt" , * from "Post"   ORDER BY "createdAt" desc
+	3
+	
+	select * from "User"
+	
+	
+	select * from "LoginAttempt"
+2026-04-26 18:20:52.368 +03 [13056] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:20:52.368 +03 [12792] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:20:52.368 +03 [10176] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:21:28.356 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 18:21:29.570 +03 [14880] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.205 s, sync=0.005 s, total=1.214 s; sync files=9, longest=0.001 s, average=0.001 s; distance=43 kB, estimate=3783 kB; lsn=0/3F20590, redo lsn=0/3F20558
+2026-04-26 18:22:30.060 +03 [12848] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:22:30.060 +03 [9464] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:22:30.060 +03 [14428] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:26:17.851 +03 [14292] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:26:17.851 +03 [14272] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:26:17.851 +03 [12776] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:26:28.585 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 18:26:29.698 +03 [14880] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.103 s, sync=0.005 s, total=1.113 s; sync files=9, longest=0.002 s, average=0.001 s; distance=50 kB, estimate=3410 kB; lsn=0/3F2D0A0, redo lsn=0/3F2D068
+2026-04-26 18:42:20.524 +03 [6292] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:42:20.524 +03 [14016] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:42:20.524 +03 [10084] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:46:28.750 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 18:46:29.561 +03 [14880] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.802 s, sync=0.005 s, total=0.811 s; sync files=8, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=3069 kB; lsn=0/3F2E2A8, redo lsn=0/3F2E270
+2026-04-26 18:51:28.572 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 18:51:29.081 +03 [14880] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.502 s, sync=0.003 s, total=0.509 s; sync files=5, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=2762 kB; lsn=0/3F2ECC0, redo lsn=0/3F2EC88
+2026-04-26 18:52:17.877 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 18:52:17.889 +03 [14880] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.002 s, total=0.013 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4670 kB, estimate=4670 kB; lsn=0/43BE4F0, redo lsn=0/43BE4B8
+2026-04-26 18:52:18.200 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 18:52:18.222 +03 [14880] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.005 s, total=0.023 s; sync files=7, longest=0.002 s, average=0.001 s; distance=4670 kB, estimate=4670 kB; lsn=0/484DDF8, redo lsn=0/484DDC0
+2026-04-26 18:52:45.230 +03 [14340] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:52:45.232 +03 [14568] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:57:18.230 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 18:57:22.658 +03 [14880] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.409 s, sync=0.016 s, total=4.428 s; sync files=45, longest=0.001 s, average=0.001 s; distance=167 kB, estimate=4219 kB; lsn=0/4877A78, redo lsn=0/4877A40
+2026-04-26 18:57:52.937 +03 [12832] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:57:52.937 +03 [16356] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 18:57:52.937 +03 [14520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:02:18.667 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 19:02:21.088 +03 [14880] LOG:  checkpoint complete: wrote 25 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.408 s, sync=0.009 s, total=2.421 s; sync files=20, longest=0.001 s, average=0.001 s; distance=17 kB, estimate=3799 kB; lsn=0/487BF48, redo lsn=0/487BF10
+2026-04-26 19:05:58.845 +03 [16140] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:05:58.845 +03 [4752] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:05:58.845 +03 [15384] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:06:35.127 +03 [14736] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:06:35.129 +03 [5316] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:07:18.097 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 19:07:19.316 +03 [14880] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.209 s, sync=0.007 s, total=1.220 s; sync files=12, longest=0.002 s, average=0.001 s; distance=9 kB, estimate=3420 kB; lsn=0/487E480, redo lsn=0/487E448
+2026-04-26 19:08:17.398 +03 [14520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:08:17.398 +03 [7248] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:08:17.399 +03 [15872] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:08:38.220 +03 [16004] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:08:38.220 +03 [2088] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:36:41.484 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 19:36:41.498 +03 [14880] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.014 s; sync files=7, longest=0.001 s, average=0.001 s; distance=4705 kB, estimate=4705 kB; lsn=0/4D169D0, redo lsn=0/4D16998
+2026-04-26 19:36:41.831 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 19:36:41.843 +03 [14880] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.003 s, total=0.012 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4705 kB, estimate=4705 kB; lsn=0/51AF040, redo lsn=0/51AF008
+2026-04-26 19:37:02.149 +03 [10520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:02.149 +03 [7352] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:19.557 +03 [12564] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:19.557 +03 [4328] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:19.557 +03 [11932] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:48.952 +03 [15892] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:48.952 +03 [15012] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:37:48.952 +03 [15524] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 19:41:41.848 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 19:41:48.198 +03 [14880] LOG:  checkpoint complete: wrote 64 buffers (0.4%); 0 WAL file(s) added, 0 removed, 0 recycled; write=6.329 s, sync=0.018 s, total=6.351 s; sync files=53, longest=0.001 s, average=0.001 s; distance=191 kB, estimate=4254 kB; lsn=0/51DF020, redo lsn=0/51DEFE8
+2026-04-26 20:10:08.668 +03 [7200] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:10:08.675 +03 [11848] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:10:12.197 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 20:10:12.205 +03 [14880] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.003 s, total=0.009 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4737 kB, estimate=4737 kB; lsn=0/567F6B8, redo lsn=0/567F680
+2026-04-26 20:10:12.493 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-26 20:10:12.505 +03 [14880] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.006 s, total=0.012 s; sync files=10, longest=0.002 s, average=0.001 s; distance=4737 kB, estimate=4737 kB; lsn=0/5B1FE48, redo lsn=0/5B1FE10
+2026-04-26 20:10:30.281 +03 [9280] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:10:30.281 +03 [1520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:10:30.281 +03 [12184] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:15:12.508 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 20:15:16.342 +03 [14880] LOG:  checkpoint complete: wrote 39 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.815 s, sync=0.015 s, total=3.834 s; sync files=41, longest=0.001 s, average=0.001 s; distance=174 kB, estimate=4281 kB; lsn=0/5B4B728, redo lsn=0/5B4B6F0
+2026-04-26 20:59:35.803 +03 [13400] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:59:35.803 +03 [5956] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 20:59:35.804 +03 [13712] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 21:00:12.365 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 21:00:14.480 +03 [14880] LOG:  checkpoint complete: wrote 22 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.105 s, sync=0.007 s, total=2.115 s; sync files=17, longest=0.001 s, average=0.001 s; distance=12 kB, estimate=3854 kB; lsn=0/5B4E7B8, redo lsn=0/5B4E780
+2026-04-26 21:05:12.482 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 21:05:13.995 +03 [14880] LOG:  checkpoint complete: wrote 16 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.503 s, sync=0.007 s, total=1.513 s; sync files=16, longest=0.001 s, average=0.001 s; distance=15 kB, estimate=3470 kB; lsn=0/5B526E0, redo lsn=0/5B526A8
+2026-04-26 21:11:28.033 +03 [14788] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 21:11:28.033 +03 [11460] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 21:11:28.033 +03 [13216] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 21:15:12.999 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 21:15:14.210 +03 [14880] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.202 s, sync=0.006 s, total=1.212 s; sync files=12, longest=0.001 s, average=0.001 s; distance=16 kB, estimate=3125 kB; lsn=0/5B56918, redo lsn=0/5B568E0
+2026-04-26 22:41:30.048 +03 [6644] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 22:41:30.048 +03 [11784] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 22:41:30.048 +03 [7356] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 22:45:12.278 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 22:45:13.894 +03 [14880] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.605 s, sync=0.006 s, total=1.616 s; sync files=16, longest=0.001 s, average=0.001 s; distance=13 kB, estimate=2814 kB; lsn=0/5B59F98, redo lsn=0/5B59F60
+2026-04-26 22:55:07.573 +03 [5572] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 22:55:07.573 +03 [4448] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 22:55:07.573 +03 [9716] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:05:12.951 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 23:05:14.064 +03 [14880] LOG:  checkpoint complete: wrote 12 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.105 s, sync=0.005 s, total=1.113 s; sync files=12, longest=0.001 s, average=0.001 s; distance=12 kB, estimate=2533 kB; lsn=0/5B5D1F0, redo lsn=0/5B5D1B8
+2026-04-26 23:06:41.089 +03 [6520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:06:41.089 +03 [13940] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:06:41.089 +03 [5660] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:10:12.075 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 23:10:12.183 +03 [14880] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.109 s; sync files=2, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=2280 kB; lsn=0/5B5D6A8, redo lsn=0/5B5D670
+2026-04-26 23:12:02.357 +03 [5496] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:12:02.357 +03 [12976] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:12:02.357 +03 [10472] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:15:12.193 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 23:15:13.406 +03 [14880] LOG:  checkpoint complete: wrote 13 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.203 s, sync=0.006 s, total=1.213 s; sync files=12, longest=0.001 s, average=0.001 s; distance=27 kB, estimate=2055 kB; lsn=0/5B644A8, redo lsn=0/5B64470
+2026-04-26 23:25:16.023 +03 [11984] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:25:16.023 +03 [1680] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:25:16.023 +03 [15732] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:25:16.023 +03 [8268] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:25:56.260 +03 [12984] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:25:56.260 +03 [15872] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:25:56.262 +03 [14772] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:31:46.617 +03 [3300] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:31:46.617 +03 [12840] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:31:46.617 +03 [14816] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:35:12.440 +03 [14880] LOG:  checkpoint starting: time
+2026-04-26 23:35:13.152 +03 [14880] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.703 s, sync=0.004 s, total=0.712 s; sync files=8, longest=0.001 s, average=0.001 s; distance=14 kB, estimate=1851 kB; lsn=0/5B67CB8, redo lsn=0/5B67C80
+2026-04-26 23:41:06.896 +03 [13620] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:41:06.896 +03 [14092] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:41:06.896 +03 [13664] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:49:40.224 +03 [12088] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:49:40.224 +03 [13908] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:49:40.224 +03 [14384] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:50:02.311 +03 [5936] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:50:02.311 +03 [8292] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-26 23:50:02.311 +03 [10096] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:20.690 +03 [15292] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:20.691 +03 [12512] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:20.696 +03 [3296] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:20.700 +03 [6624] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:20.700 +03 [7040] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:20.705 +03 [7220] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:24.006 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:28:24.014 +03 [14880] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.002 s, total=0.009 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4769 kB, estimate=4769 kB; lsn=0/60101E8, redo lsn=0/60101B0
+2026-04-27 00:28:24.272 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:28:24.280 +03 [14880] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.004 s, total=0.009 s; sync files=8, longest=0.001 s, average=0.001 s; distance=4769 kB, estimate=4769 kB; lsn=0/64B87E0, redo lsn=0/64B87A8
+2026-04-27 00:28:47.395 +03 [5036] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:47.395 +03 [15908] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:28:47.395 +03 [13300] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:30:47.093 +03 [12036] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:30:47.093 +03 [15820] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:30:47.093 +03 [14192] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:33:24.285 +03 [14880] LOG:  checkpoint starting: time
+2026-04-27 00:33:29.226 +03 [14880] LOG:  checkpoint complete: wrote 50 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.925 s, sync=0.013 s, total=4.942 s; sync files=38, longest=0.001 s, average=0.001 s; distance=195 kB, estimate=4312 kB; lsn=0/64E9520, redo lsn=0/64E94E8
+2026-04-27 00:38:24.231 +03 [14880] LOG:  checkpoint starting: time
+2026-04-27 00:38:24.943 +03 [14880] LOG:  checkpoint complete: wrote 8 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.704 s, sync=0.004 s, total=0.712 s; sync files=7, longest=0.001 s, average=0.001 s; distance=7 kB, estimate=3881 kB; lsn=0/64EB2D0, redo lsn=0/64EB298
+2026-04-27 00:40:47.676 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:40:47.688 +03 [14880] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.003 s, total=0.013 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4791 kB, estimate=4791 kB; lsn=0/6999028, redo lsn=0/6998FF0
+2026-04-27 00:40:47.999 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:40:48.025 +03 [14880] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.005 s, total=0.027 s; sync files=9, longest=0.001 s, average=0.001 s; distance=4818 kB, estimate=4818 kB; lsn=0/6E4D978, redo lsn=0/6E4D940
+2026-04-27 00:40:48.342 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:40:48.411 +03 [14880] LOG:  checkpoint complete: wrote 39 buffers (0.2%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.009 s, sync=0.053 s, total=0.069 s; sync files=40, longest=0.032 s, average=0.002 s; distance=5009 kB, estimate=5009 kB; lsn=0/7331E40, redo lsn=0/7331E08
+2026-04-27 00:41:00.682 +03 [5148] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:00.685 +03 [16120] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:00.689 +03 [2100] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:00.689 +03 [4444] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:00.689 +03 [3888] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:00.691 +03 [13120] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:53.043 +03 [5220] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:53.043 +03 [3168] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:41:53.043 +03 [13648] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:42:42.136 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:42:42.147 +03 [14880] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.011 s; sync files=7, longest=0.002 s, average=0.001 s; distance=4834 kB, estimate=4991 kB; lsn=0/77EA980, redo lsn=0/77EA948
+2026-04-27 00:42:42.502 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:42:42.515 +03 [14880] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.006 s, total=0.013 s; sync files=11, longest=0.001 s, average=0.001 s; distance=4826 kB, estimate=4975 kB; lsn=0/7CA1390, redo lsn=0/7CA1358
+2026-04-27 00:42:42.839 +03 [14880] LOG:  checkpoint starting: immediate force wait
+2026-04-27 00:42:42.849 +03 [14880] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.004 s, total=0.011 s; sync files=7, longest=0.001 s, average=0.001 s; distance=4825 kB, estimate=4960 kB; lsn=0/81578D8, redo lsn=0/81578A0
+2026-04-27 00:47:42.853 +03 [14880] LOG:  checkpoint starting: time
+2026-04-27 00:47:43.061 +03 [14880] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.202 s, sync=0.002 s, total=0.208 s; sync files=3, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=4464 kB; lsn=0/8157A50, redo lsn=0/8157A18
+2026-04-27 00:50:11.231 +03 [14512] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 00:50:11.231 +03 [13796] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:33:24.076 +03 [6088] LOG:  starting PostgreSQL 16.13, compiled by Visual C++ build 1944, 64-bit
+2026-04-27 19:33:24.079 +03 [6088] LOG:  listening on IPv6 address "::1", port 5433
+2026-04-27 19:33:24.079 +03 [6088] LOG:  listening on IPv4 address "127.0.0.1", port 5433
+2026-04-27 19:33:24.110 +03 [8172] LOG:  database system was interrupted; last known up at 2026-04-27 00:47:43 +03
+2026-04-27 19:33:25.881 +03 [8172] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-04-27 19:33:25.883 +03 [8172] LOG:  redo starts at 0/8157A18
+2026-04-27 19:33:25.883 +03 [8172] LOG:  invalid record length at 0/8157B00: expected at least 24, got 0
+2026-04-27 19:33:25.883 +03 [8172] LOG:  redo done at 0/8157AC8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-04-27 19:33:25.889 +03 [2036] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-04-27 19:33:25.896 +03 [2036] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.011 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/8157B00, redo lsn=0/8157B00
+2026-04-27 19:33:25.911 +03 [6088] LOG:  database system is ready to accept connections
+2026-04-27 19:33:40.003 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:33:40.011 +03 [2036] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.004 s, total=0.009 s; sync files=4, longest=0.002 s, average=0.001 s; distance=4819 kB, estimate=4819 kB; lsn=0/860C8D8, redo lsn=0/860C8A0
+2026-04-27 19:33:40.366 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:33:40.374 +03 [2036] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.002 s, total=0.008 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4844 kB, estimate=4844 kB; lsn=0/8AC7940, redo lsn=0/8AC7908
+2026-04-27 19:33:40.688 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:33:40.729 +03 [2036] LOG:  checkpoint complete: wrote 41 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.029 s, total=0.041 s; sync files=41, longest=0.002 s, average=0.001 s; distance=5027 kB, estimate=5027 kB; lsn=0/8FB0600, redo lsn=0/8FB05C8
+2026-04-27 19:33:54.974 +03 [5632] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:33:54.974 +03 [7128] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:33:54.974 +03 [12448] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:38:40.730 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 19:38:44.767 +03 [2036] LOG:  checkpoint complete: wrote 41 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.018 s, sync=0.016 s, total=4.038 s; sync files=35, longest=0.002 s, average=0.001 s; distance=39 kB, estimate=4528 kB; lsn=0/8FBA4C8, redo lsn=0/8FBA490
+2026-04-27 19:43:40.768 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 19:43:41.180 +03 [2036] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.402 s, sync=0.003 s, total=0.412 s; sync files=5, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=4075 kB; lsn=0/8FBAC68, redo lsn=0/8FBAC30
+2026-04-27 19:46:15.340 +03 [12920] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:46:15.353 +03 [13188] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:46:15.354 +03 [10560] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:46:15.357 +03 [12440] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:46:25.321 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:46:25.331 +03 [2036] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.002 s, total=0.010 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4844 kB, estimate=4844 kB; lsn=0/9475E98, redo lsn=0/9475E60
+2026-04-27 19:46:25.646 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:46:25.657 +03 [2036] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.005 s, total=0.012 s; sync files=10, longest=0.001 s, average=0.001 s; distance=4848 kB, estimate=4848 kB; lsn=0/9932250, redo lsn=0/9932218
+2026-04-27 19:46:25.966 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:46:25.985 +03 [2036] LOG:  checkpoint complete: wrote 27 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.011 s, total=0.020 s; sync files=24, longest=0.002 s, average=0.001 s; distance=4942 kB, estimate=4942 kB; lsn=0/9E05DC8, redo lsn=0/9E05D90
+2026-04-27 19:46:40.978 +03 [13348] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:46:40.978 +03 [13356] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:46:40.978 +03 [13004] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:51:25.986 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 19:51:26.595 +03 [2036] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.602 s, sync=0.003 s, total=0.609 s; sync files=6, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=4448 kB; lsn=0/9E05F40, redo lsn=0/9E05F08
+2026-04-27 19:52:25.950 +03 [4992] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:52:25.951 +03 [11512] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:52:25.951 +03 [6952] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:52:25.951 +03 [14236] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:52:37.769 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:52:37.778 +03 [2036] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.002 s, total=0.009 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4849 kB, estimate=4849 kB; lsn=0/A2C24C0, redo lsn=0/A2C2488
+2026-04-27 19:52:38.090 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:52:38.098 +03 [2036] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.003 s, total=0.009 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4858 kB, estimate=4858 kB; lsn=0/A780DE8, redo lsn=0/A780DB0
+2026-04-27 19:52:38.398 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 19:52:38.416 +03 [2036] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.010 s, total=0.018 s; sync files=23, longest=0.001 s, average=0.001 s; distance=4944 kB, estimate=4944 kB; lsn=0/AC54EF8, redo lsn=0/AC54EC0
+2026-04-27 19:53:08.823 +03 [13792] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:53:08.823 +03 [2704] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:53:08.823 +03 [7384] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:57:38.416 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 19:57:39.046 +03 [2036] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.624 s, sync=0.003 s, total=0.631 s; sync files=6, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=4449 kB; lsn=0/AC55070, redo lsn=0/AC55038
+2026-04-27 19:58:44.453 +03 [13668] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:58:44.453 +03 [3492] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 19:58:44.453 +03 [14180] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:02:38.046 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 20:02:40.976 +03 [2036] LOG:  checkpoint complete: wrote 30 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.914 s, sync=0.011 s, total=2.930 s; sync files=30, longest=0.001 s, average=0.001 s; distance=38 kB, estimate=4008 kB; lsn=0/AC5E8F8, redo lsn=0/AC5E888
+2026-04-27 20:07:38.976 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 20:07:41.998 +03 [2036] LOG:  checkpoint complete: wrote 31 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.007 s, sync=0.011 s, total=3.023 s; sync files=30, longest=0.001 s, average=0.001 s; distance=73 kB, estimate=3615 kB; lsn=0/AC70D80, redo lsn=0/AC70D48
+2026-04-27 20:15:13.470 +03 [5456] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:15:13.470 +03 [12408] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:15:13.470 +03 [11976] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:20:23.255 +03 [11384] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:20:23.255 +03 [12536] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:20:23.255 +03 [12796] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:24:27.301 +03 [13096] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:24:27.301 +03 [12588] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:24:27.301 +03 [10848] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:27:44.402 +03 [11528] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:27:44.402 +03 [9520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:27:44.402 +03 [13144] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:31:49.386 +03 [4408] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:31:49.396 +03 [11900] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:31:49.396 +03 [10492] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:31:49.396 +03 [13024] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:32:03.041 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 20:32:03.050 +03 [2036] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.002 s, total=0.010 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4858 kB, estimate=4858 kB; lsn=0/B12F870, redo lsn=0/B12F838
+2026-04-27 20:32:03.361 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 20:32:03.368 +03 [2036] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.003 s, total=0.008 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4865 kB, estimate=4865 kB; lsn=0/B5EFCD0, redo lsn=0/B5EFC98
+2026-04-27 20:32:03.676 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 20:32:03.699 +03 [2036] LOG:  checkpoint complete: wrote 28 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.013 s, total=0.023 s; sync files=23, longest=0.001 s, average=0.001 s; distance=4978 kB, estimate=4978 kB; lsn=0/BACC688, redo lsn=0/BACC650
+2026-04-27 20:32:20.030 +03 [13784] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:32:20.030 +03 [13568] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:32:20.030 +03 [6072] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:37:03.699 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 20:37:04.711 +03 [2036] LOG:  checkpoint complete: wrote 11 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.002 s, sync=0.005 s, total=1.012 s; sync files=10, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=4481 kB; lsn=0/BACECB0, redo lsn=0/BACEC78
+2026-04-27 20:38:01.234 +03 [13748] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:38:01.234 +03 [8432] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:38:01.234 +03 [6520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:41:05.235 +03 [14544] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:41:05.235 +03 [14624] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:41:05.235 +03 [14608] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:42:03.711 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 20:42:03.820 +03 [2036] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.109 s; sync files=2, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=4033 kB; lsn=0/BACF968, redo lsn=0/BACF930
+2026-04-27 20:43:39.204 +03 [15100] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:43:39.204 +03 [12216] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 20:43:39.204 +03 [11860] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:09:59.762 +03 [14564] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:09:59.762 +03 [4340] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:09:59.762 +03 [12080] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:11:45.023 +03 [15136] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:11:45.023 +03 [4756] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:11:45.023 +03 [11520] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.981 +03 [4784] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.987 +03 [11224] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.989 +03 [11376] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.989 +03 [2272] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.989 +03 [4304] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.993 +03 [6360] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:28:49.994 +03 [14820] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:29:04.749 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 21:29:04.757 +03 [2036] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.009 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4865 kB, estimate=4865 kB; lsn=0/BF8FF80, redo lsn=0/BF8FF48
+2026-04-27 21:29:05.100 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 21:29:05.111 +03 [2036] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.003 s, sync=0.003 s, total=0.012 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4920 kB, estimate=4920 kB; lsn=0/C45E288, redo lsn=0/C45E250
+2026-04-27 21:29:05.451 +03 [2036] LOG:  checkpoint starting: immediate force wait
+2026-04-27 21:29:05.485 +03 [2036] LOG:  checkpoint complete: wrote 49 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.021 s, total=0.034 s; sync files=49, longest=0.002 s, average=0.001 s; distance=5125 kB, estimate=5125 kB; lsn=0/C95F8A0, redo lsn=0/C95F868
+2026-04-27 21:29:23.669 +03 [13344] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:29:23.669 +03 [960] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:29:23.669 +03 [14552] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:30:08.845 +03 [11808] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:30:08.845 +03 [10352] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:30:08.845 +03 [11292] LOG:  could not receive data from client: unrecognized winsock error 10054
+2026-04-27 21:34:05.485 +03 [2036] LOG:  checkpoint starting: time
+2026-04-27 21:34:09.619 +03 [2036] LOG:  checkpoint complete: wrote 42 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.117 s, sync=0.012 s, total=4.134 s; sync files=34, longest=0.001 s, average=0.001 s; distance=42 kB, estimate=4617 kB; lsn=0/C96A308, redo lsn=0/C96A2D0
