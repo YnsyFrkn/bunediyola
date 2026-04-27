@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { PrismaClient, PostStatus, UserRole } from "@prisma/client";
+import { PrismaClient, UserRole } from "@prisma/client";
 
 import { hashPassword } from "../src/lib/password";
 import { categories } from "../src/data/categories";
@@ -49,7 +49,7 @@ async function main() {
         content: post.content,
         coverImage: post.image,
         author: post.author,
-        status: post.status === "DRAFT" ? PostStatus.DRAFT : PostStatus.PUBLISHED,
+        status: post.status === "DRAFT" ? "DRAFT" : "PUBLISHED",
         viewCount: post.viewCount,
         categoryId: category.id,
         createdAt: new Date(post.createdAt),
@@ -61,7 +61,7 @@ async function main() {
         content: post.content,
         coverImage: post.image,
         author: post.author,
-        status: post.status === "DRAFT" ? PostStatus.DRAFT : PostStatus.PUBLISHED,
+        status: post.status === "DRAFT" ? "DRAFT" : "PUBLISHED",
         viewCount: post.viewCount,
         categoryId: category.id,
         createdAt: new Date(post.createdAt),
