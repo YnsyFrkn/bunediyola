@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { PrismaClient, UserRole } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 import { hashPassword } from "../src/lib/password";
 import { categories } from "../src/data/categories";
@@ -76,13 +76,13 @@ async function main() {
     update: {
       name: "Admin",
       passwordHash,
-      role: UserRole.ADMIN,
+      role: "ADMIN",
     },
     create: {
       email: adminEmail,
       name: "Admin",
       passwordHash,
-      role: UserRole.ADMIN,
+      role: "ADMIN",
     },
   });
 }
