@@ -5,7 +5,9 @@ import { posts as mockPosts } from "@/data/posts";
 
 export type CategoryRecord = Category;
 
-export type PostRecord = PrismaPost;
+export type PostRecord = PrismaPost & {
+  isEditorPick?: boolean;
+};
 
 const now = new Date("2026-04-24T12:00:00.000Z");
 
@@ -34,6 +36,7 @@ function buildInitialPosts(): PostRecord[] {
       coverImage: post.image,
       author: post.author,
       status: post.status ?? "PUBLISHED",
+      isEditorPick: post.isFeatured,
       viewCount: post.viewCount,
       categoryId: category?.id ?? "1",
       deletedAt: null,
@@ -202,6 +205,7 @@ export function createMockPost(input: {
   coverImage?: string;
   author?: string;
   status: PostStatus;
+  isEditorPick?: boolean;
   categoryId: string;
 }) {
   const post: PostRecord = {
@@ -213,6 +217,7 @@ export function createMockPost(input: {
     coverImage: input.coverImage || null,
     author: input.author || "bunediyola ekibi",
     status: input.status,
+    isEditorPick: input.isEditorPick ?? false,
     viewCount: 0,
     categoryId: input.categoryId,
     deletedAt: null,
@@ -234,6 +239,7 @@ export function updateMockPost(
     coverImage?: string;
     author?: string;
     status: PostStatus;
+    isEditorPick?: boolean;
     categoryId: string;
   },
 ) {
@@ -250,6 +256,7 @@ export function updateMockPost(
   post.coverImage = input.coverImage || null;
   post.author = input.author || "bunediyola ekibi";
   post.status = input.status;
+  post.isEditorPick = input.isEditorPick ?? false;
   post.categoryId = input.categoryId;
   post.updatedAt = new Date();
 

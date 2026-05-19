@@ -6,6 +6,7 @@ import { PostGrid } from "@/components/post/PostGrid";
 import { Button } from "@/components/ui/Button";
 import { Pagination } from "@/components/ui/Pagination";
 import { getPublicPosts } from "@/lib/content";
+import { getAbsoluteUrl } from "@/lib/site";
 import { paginateItems, parsePageParam } from "@/utils/pagination";
 import { normalizeSearchText } from "@/utils/slugify";
 
@@ -19,8 +20,11 @@ type SearchPageProps = {
 const SEARCH_PAGE_SIZE = 9;
 
 export const metadata: Metadata = {
-  title: "Arama | bunediyola",
+  title: "Arama",
   description: "bunediyola icerikleri icinde arama sonuclari.",
+  alternates: {
+    canonical: getAbsoluteUrl("/arama"),
+  },
 };
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
@@ -32,7 +36,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const filteredPosts = normalizedQuery
     ? posts.filter((post) => {
         const searchableText = normalizeSearchText(
-          `${post.title} ${post.summary} ${post.category} ${post.author} ${post.content}`,
+          `${post.title} ${post.summary} ${post.category} ${post.author} ${post.content} ${
+            post.tags?.map((tag) => tag.name).join(" ") ?? ""
+          }`,
         );
 
         return searchableText.includes(normalizedQuery);
@@ -59,6 +65,21 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             Toplam {filteredPosts.length} sonuc bulundu.
           </p>
         ) : null}
+        <form action="/arama" className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <input
+            type="search"
+            name="q"
+            defaultValue={q}
+            placeholder="Baslik, kategori ya da konu ara"
+            className="min-h-12 flex-1 rounded-full border border-[#e7e5e4] bg-white px-5 text-base text-[#111827] outline-none transition placeholder:text-[#9ca3af] focus:border-[#fb923c]"
+          />
+          <button
+            type="submit"
+            className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#111827] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c]"
+          >
+            Ara
+          </button>
+        </form>
         <div className="mt-6 flex flex-wrap gap-3">
           <Button href="/" variant="secondary">
             Ana Sayfaya Don
@@ -119,7 +140,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         <section className="rounded-[32px] border border-dashed border-[#fdba74] bg-[#fff7ed] p-8 text-center">
           <h2 className="font-heading text-3xl text-[#111827]">Aramaya hazir</h2>
           <p className="mt-3 text-lg leading-8 text-[#4b5563]">
-            Ust kisimdaki arama alanina bir baslik, kategori ya da konu yazman yeterli.
+            Yukaridaki arama alanina bir baslik, kategori ya da konu yazman yeterli.
           </p>
         </section>
       )}

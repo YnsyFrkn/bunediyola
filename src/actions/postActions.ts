@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 
 import { ensureAdminSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { setPostEditorPick } from "@/actions/editorPickActions";
+import { syncPostTags } from "@/actions/tagActions";
 import {
   createMockPost,
   getMockPostById,
@@ -121,16 +123,19 @@ export async function createPost(_prevState: FormState, formData: FormData): Pro
     };
   }
 
+  const { tagNames, isEditorPick, ...postData } = parsed.data;
   let createdPostId: string;
 
   if (!process.env.DATABASE_URL) {
-    createdPostId = createMockPost(parsed.data).id;
+    createdPostId = createMockPost({ ...postData, isEditorPick }).id;
   } else {
     const createdPost = await prisma.post.create({
-      data: parsed.data,
+      data: postData,
     });
 
     createdPostId = createdPost.id;
+    await setPostEditorPick(createdPostId, isEditorPick);
+    await syncPostTags(createdPostId, tagNames);
   }
 
   revalidatePath("/admin");
@@ -140,7 +145,7 @@ export async function createPost(_prevState: FormState, formData: FormData): Pro
   revalidatePath("/kategori/[slug]", "page");
   revalidatePath("/yazi/[slug]", "page");
 
-  redirect(`/admin/posts/${createdPostId}/edit?saved=${parsed.data.status.toLowerCase()}`);
+  redirect(`/admin/posts/${createdPostId}/edit?saved=${postData.status.toLowerCase()}`);
 }
 
 export async function updatePost(
@@ -174,13 +179,17 @@ export async function updatePost(
     };
   }
 
+  const { tagNames, isEditorPick, ...postData } = parsed.data;
+
   if (!process.env.DATABASE_URL) {
-    updateMockPost(id, parsed.data);
+    updateMockPost(id, { ...postData, isEditorPick });
   } else {
     await prisma.post.update({
       where: { id },
-      data: parsed.data,
+      data: postData,
     });
+    await setPostEditorPick(id, isEditorPick);
+    await syncPostTags(id, tagNames);
   }
 
   revalidatePath("/admin");
@@ -195,7 +204,7 @@ export async function updatePost(
     revalidatePath(`/yazi/${currentPost.slug}`);
   }
 
-  revalidatePath(`/yazi/${parsed.data.slug}`);
+  revalidatePath(`/yazi/${postData.slug}`);
 
   return {
     success: true,

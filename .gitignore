@@ -29,6 +29,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+*.log
+*.cookies
+
+# local runtime data
+/.postgres-data/
+/.postgres-run/
+/public/uploads/
 
 # env files (can opt-in for committing if needed)
 .env*
@@ -39,3 +46,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local generated artifacts
+/.chrome-pdf-profile/
+/.codex-odt-images/
+/admin-comments-no-cookie.html
+/profile-comments-no-cookie.html
+/docs/yayin-oncesi-olmasi-gerekenler.html
+/docs/yayin-oncesi-olmasi-gerekenler.pdf

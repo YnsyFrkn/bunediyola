@@ -8,8 +8,10 @@ const siteLinks = [
   { href: "/hakkimizda", label: "Hakkimizda" },
   { href: "/iletisim", label: "Iletisim" },
   { href: "/gizlilik-politikasi", label: "Gizlilik Politikasi" },
+  { href: "/kvkk-aydinlatma-metni", label: "KVKK" },
   { href: "/kullanim-sartlari", label: "Kullanim Sartlari" },
   { href: "/cerez-politikasi", label: "Cerez Politikasi" },
+  { href: "/reklam-ve-is-birligi", label: "Reklam ve Is Birligi" },
 ];
 
 export function Footer() {

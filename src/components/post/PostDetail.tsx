@@ -6,10 +6,13 @@ import { getLikeCount, isPostLikedByUser } from "@/actions/likeActions";
 import { CommentSection } from "@/components/comments/CommentSection";
 import { FavoriteButton } from "@/components/favorite/FavoriteButton";
 import { LikeButton } from "@/components/like/LikeButton";
+import { ShareButtons } from "@/components/post/ShareButtons";
 import { ReportButton } from "@/components/reports/ReportButton";
 import { auth } from "@/lib/auth";
+import { getAbsoluteUrl } from "@/lib/site";
 import type { Post } from "@/types/post";
 import { formatDate } from "@/utils/formatDate";
+import { formatReadingTime } from "@/utils/readingTime";
 
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
@@ -21,6 +24,7 @@ type PostDetailProps = {
 
 export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
   const session = await auth();
+  const readingTime = post.readingTimeMinutes;
   const [likeCount, initialLiked, initialFavorited] = await Promise.all([
     getLikeCount(post.id),
     session?.user ? isPostLikedByUser(post.id, session.user.id) : Promise.resolve(false),
@@ -45,6 +49,11 @@ export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
           <div className="flex flex-wrap items-center gap-3">
             <Badge href={`/kategori/${post.categorySlug}`}>{post.category}</Badge>
             <span className="text-sm text-[#6b7280]">{formatDate(post.createdAt)}</span>
+            {readingTime ? (
+              <span className="text-sm text-[#6b7280]">
+                {formatReadingTime(readingTime)}
+              </span>
+            ) : null}
             <span className="text-sm text-[#6b7280]">Yazar: {post.author}</span>
           </div>
 
@@ -75,6 +84,26 @@ export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+
+          <ShareButtons
+            title={post.title}
+            summary={post.summary}
+            url={getAbsoluteUrl(`/yazi/${post.slug}`)}
+          />
+
+          {post.tags?.length ? (
+            <div className="flex flex-wrap gap-2 border-t border-[#f1e6dd] pt-6">
+              {post.tags.map((tag) => (
+                <Link
+                  key={tag.slug}
+                  href={`/arama?q=${encodeURIComponent(tag.name)}`}
+                  className="rounded-full bg-[#fff7ed] px-3 py-1 text-sm font-semibold text-[#9a3412] transition hover:bg-[#ffedd5] hover:text-[#7c2d12]"
+                >
+                  #{tag.name}
+                </Link>
+              ))}
+            </div>
+          ) : null}
 
           <div className="flex flex-wrap gap-3">
             <Button href="/" variant="secondary">

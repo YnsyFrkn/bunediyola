@@ -22,7 +22,7 @@ function getSafeRedirectTo(value?: string) {
     const url = new URL(value, "http://localhost:3000");
     const relativeUrl = `${url.pathname}${url.search}${url.hash}`;
 
-    if (relativeUrl.startsWith("/admin")) {
+    if (!relativeUrl.startsWith("/") || relativeUrl.startsWith("/admin")) {
       return "/";
     }
 

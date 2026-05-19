@@ -5,6 +5,8 @@ import type { Post } from "@/types/post";
 
 import { getCategories } from "@/actions/categoryActions";
 import { getPublishedPosts } from "@/actions/postActions";
+import { getTagNamesByPostIds } from "@/actions/tagActions";
+import { getReadingTimeMinutes } from "@/utils/readingTime";
 
 function mapStatusToFeatured(status: PostStatus, viewCount: number) {
   return status === "PUBLISHED" && viewCount >= 1000;
@@ -23,7 +25,10 @@ export async function getPublicCategories(): Promise<Category[]> {
 
 export async function getPublicPosts(): Promise<Post[]> {
   const posts = await getPublishedPosts();
-  const categories = await getCategories();
+  const [categories, tagMap] = await Promise.all([
+    getCategories(),
+    getTagNamesByPostIds(posts.map((post) => post.id)),
+  ]);
 
   return posts.map((post) => {
     const category = categories.find((item) => item.id === post.categoryId);
@@ -40,8 +45,11 @@ export async function getPublicPosts(): Promise<Post[]> {
       author: post.author,
       createdAt: post.createdAt.toISOString(),
       isFeatured: mapStatusToFeatured(post.status, post.viewCount),
+      isEditorPick: post.isEditorPick ?? false,
       viewCount: post.viewCount,
+      readingTimeMinutes: getReadingTimeMinutes(post.content),
       status: post.status,
+      tags: tagMap.get(post.id) ?? [],
     };
   });
 }

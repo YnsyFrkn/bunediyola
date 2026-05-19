@@ -2,19 +2,35 @@ import Link from "next/link";
 
 import type { ReportStatusFilter, ReportTypeFilter } from "@/actions/reportActions";
 
-const statusFilters: Array<{ label: string; value: ReportStatusFilter; href: string }> = [
-  { label: "Tumu", value: "all", href: "/admin/reports" },
-  { label: "Beklemede", value: "pending", href: "/admin/reports?status=pending" },
-  { label: "Incelendi", value: "reviewed", href: "/admin/reports?status=reviewed" },
-  { label: "Reddedildi", value: "dismissed", href: "/admin/reports?status=dismissed" },
-  { label: "Islem yapildi", value: "action_taken", href: "/admin/reports?status=action_taken" },
+const statusFilters: Array<{ label: string; value: ReportStatusFilter }> = [
+  { label: "Tumu", value: "all" },
+  { label: "Beklemede", value: "pending" },
+  { label: "Incelendi", value: "reviewed" },
+  { label: "Reddedildi", value: "dismissed" },
+  { label: "Islem yapildi", value: "action_taken" },
 ];
 
-const typeFilters: Array<{ label: string; value: ReportTypeFilter; href: string }> = [
-  { label: "Tum tipler", value: "all", href: "/admin/reports" },
-  { label: "Yazilar", value: "post", href: "/admin/reports?type=post" },
-  { label: "Yorumlar", value: "comment", href: "/admin/reports?type=comment" },
+const typeFilters: Array<{ label: string; value: ReportTypeFilter }> = [
+  { label: "Tum tipler", value: "all" },
+  { label: "Yazilar", value: "post" },
+  { label: "Yorumlar", value: "comment" },
 ];
+
+function getReportsHref(status: ReportStatusFilter, type: ReportTypeFilter) {
+  const params = new URLSearchParams();
+
+  if (status !== "all") {
+    params.set("status", status);
+  }
+
+  if (type !== "all") {
+    params.set("type", type);
+  }
+
+  const query = params.toString();
+
+  return query ? `/admin/reports?${query}` : "/admin/reports";
+}
 
 function FilterLink({
   href,
@@ -53,9 +69,9 @@ export function ReportFilters({
         {statusFilters.map((filter) => (
           <FilterLink
             key={filter.value}
-            href={filter.href}
+            href={getReportsHref(filter.value, activeType)}
             label={filter.label}
-            isActive={activeType === "all" && activeStatus === filter.value}
+            isActive={activeStatus === filter.value}
           />
         ))}
       </div>
@@ -63,9 +79,9 @@ export function ReportFilters({
         {typeFilters.map((filter) => (
           <FilterLink
             key={filter.value}
-            href={filter.href}
+            href={getReportsHref(activeStatus, filter.value)}
             label={filter.label}
-            isActive={activeStatus === "all" && activeType === filter.value}
+            isActive={activeType === filter.value}
           />
         ))}
       </div>

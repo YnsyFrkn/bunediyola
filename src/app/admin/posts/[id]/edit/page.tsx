@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { getCategories } from "@/actions/categoryActions";
+import { getPostEditorPick } from "@/actions/editorPickActions";
 import { getPostById, updatePost } from "@/actions/postActions";
+import { getTagNamesForPost } from "@/actions/tagActions";
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { PostForm } from "@/components/admin/PostForm";
 import { Button } from "@/components/ui/Button";
@@ -19,7 +21,12 @@ type EditPostPageProps = {
 export default async function EditPostPage({ params, searchParams }: EditPostPageProps) {
   const { id } = await params;
   const { saved } = await searchParams;
-  const [post, categories] = await Promise.all([getPostById(id), getCategories()]);
+  const [post, categories, tags, isEditorPick] = await Promise.all([
+    getPostById(id),
+    getCategories(),
+    getTagNamesForPost(id),
+    getPostEditorPick(id),
+  ]);
 
   if (!post) {
     notFound();
@@ -96,6 +103,8 @@ export default async function EditPostPage({ params, searchParams }: EditPostPag
           coverImage: post.coverImage,
           author: post.author,
           categoryId: post.categoryId,
+          tags: tags.map((tag) => tag.name),
+          isEditorPick,
           status: post.status,
         }}
       />

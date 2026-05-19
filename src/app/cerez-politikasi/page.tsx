@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 
 import { InfoPage } from "@/components/layout/InfoPage";
+import { getAbsoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Cerez Politikasi | bunediyola",
+  title: "Cerez Politikasi",
   description: "bunediyola cerez politikasi.",
+  alternates: {
+    canonical: getAbsoluteUrl("/cerez-politikasi"),
+  },
 };
 
 export default function CookiePolicyPage() {

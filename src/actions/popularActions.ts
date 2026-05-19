@@ -10,6 +10,7 @@ const DEFAULT_POPULAR_LIMIT = 10;
 const MIN_POPULAR_SCORE = 5;
 
 export type PopularPostRecord = Awaited<ReturnType<typeof getPopularPostsWeekly>>[number];
+export type EngagementPostRecord = Awaited<ReturnType<typeof getMostLikedPosts>>[number];
 
 function calculatePostScoreValue({
   likeCount,
@@ -122,4 +123,136 @@ export async function getPopularPostsDaily(limit = DEFAULT_POPULAR_LIMIT) {
 
 export async function getPopularPostsWeekly(limit = DEFAULT_POPULAR_LIMIT) {
   return getPopularPostsSince(new Date(Date.now() - WEEKLY_WINDOW_MS), limit);
+}
+
+function mapEngagementPost({
+  post,
+  likeCount,
+  commentCount,
+}: {
+  post: {
+    id: string;
+    title: string;
+    slug: string;
+    summary: string;
+    coverImage: string | null;
+    createdAt: Date;
+    category: {
+      name: string;
+      slug: string;
+    };
+  };
+  likeCount: number;
+  commentCount: number;
+}) {
+  return {
+    id: post.id,
+    title: post.title,
+    slug: post.slug,
+    summary: post.summary,
+    image: post.coverImage || "/images/posts/gundem-gunluk.svg",
+    category: post.category.name,
+    categorySlug: post.category.slug,
+    likeCount,
+    commentCount,
+    createdAt: post.createdAt,
+  };
+}
+
+export async function getMostLikedPosts(limit = 5) {
+  const posts = await prisma.post.findMany({
+    where: {
+      status: PostStatus.PUBLISHED,
+      deletedAt: null,
+    },
+    include: {
+      category: {
+        select: {
+          name: true,
+          slug: true,
+        },
+      },
+      likes: {
+        select: {
+          id: true,
+        },
+      },
+      comments: {
+        where: {
+          status: CommentStatus.VISIBLE,
+          deletedAt: null,
+        },
+        select: {
+          id: true,
+        },
+      },
+    },
+  });
+
+  return posts
+    .map((post) =>
+      mapEngagementPost({
+        post,
+        likeCount: post.likes.length,
+        commentCount: post.comments.length,
+      }),
+    )
+    .filter((post) => post.likeCount > 0)
+    .sort((a, b) => {
+      if (b.likeCount !== a.likeCount) {
+        return b.likeCount - a.likeCount;
+      }
+
+      return b.createdAt.getTime() - a.createdAt.getTime();
+    })
+    .slice(0, limit);
+}
+
+export async function getMostCommentedPosts(limit = 5) {
+  const posts = await prisma.post.findMany({
+    where: {
+      status: PostStatus.PUBLISHED,
+      deletedAt: null,
+    },
+    include: {
+      category: {
+        select: {
+          name: true,
+          slug: true,
+        },
+      },
+      likes: {
+        select: {
+          id: true,
+        },
+      },
+      comments: {
+        where: {
+          status: CommentStatus.VISIBLE,
+          deletedAt: null,
+        },
+        select: {
+          id: true,
+        },
+      },
+    },
+  });
+
+  return posts
+    .map((post) =>
+      mapEngagementPost({
+        post,
+        likeCount: post.likes.length,
+        commentCount: post.comments.length,
+      }),
+    )
+    .filter((post) => post.commentCount > 0)
+    .sort((a, b) => {
+      if (b.commentCount !== a.commentCount) {
+        return b.commentCount - a.commentCount;
+      }
+
+      return b.createdAt.getTime() - a.createdAt.getTime();
+    })
+    .slice(0, limit);
 }

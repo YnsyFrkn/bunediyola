@@ -22,6 +22,8 @@ type PostFormProps = {
     coverImage?: string | null;
     author?: string;
     categoryId?: string;
+    tags?: string[];
+    isEditorPick?: boolean;
     status?: "DRAFT" | "PUBLISHED";
   };
   submitLabel: string;
@@ -129,6 +131,23 @@ export function PostForm({
         <FieldError error={state.errors?.content} />
       </div>
 
+      <label className="flex gap-4 rounded-[24px] border border-[#f3ebe3] bg-[#fffaf5] p-4">
+        <input
+          type="checkbox"
+          name="isEditorPick"
+          defaultChecked={
+            state.values?.isEditorPick ? state.values.isEditorPick === "on" : Boolean(initialValues?.isEditorPick)
+          }
+          className="mt-1 h-5 w-5 rounded border-[#d6d3d1] text-[#ea580c] focus:ring-[#fb923c]"
+        />
+        <span>
+          <span className="block text-sm font-semibold text-[#111827]">Editorun Secimi</span>
+          <span className="mt-1 block text-sm leading-6 text-[#6b7280]">
+            Bu yaziyi ana sayfadaki Editorun Sectikleri alaninda goster.
+          </span>
+        </span>
+      </label>
+
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-2">
           <label htmlFor="coverImage" className="block text-sm font-semibold text-[#111827]">
@@ -163,6 +182,24 @@ export function PostForm({
           </p>
           <FieldError error={state.errors?.author} />
         </div>
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="tags" className="block text-sm font-semibold text-[#111827]">
+          Etiketler
+        </label>
+        <input
+          id="tags"
+          name="tags"
+          defaultValue={state.values?.tags ?? initialValues?.tags?.join(", ") ?? ""}
+          placeholder="Ornek: yapay zeka, sosyal medya, gundem"
+          className="h-12 w-full rounded-2xl border border-[#e7e5e4] px-4 outline-none transition focus:border-[#fb923c]"
+        />
+        <p className="text-sm leading-6 text-[#6b7280]">
+          Virgulle ayirarak en fazla 8 etiket yaz. Etiketler kullanicinin benzer konulari
+          kesfetmesini kolaylastirir.
+        </p>
+        <FieldError error={state.errors?.tags} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 
 import { InfoPage } from "@/components/layout/InfoPage";
+import { getAbsoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Kullanim Sartlari | bunediyola",
+  title: "Kullanim Sartlari",
   description: "bunediyola kullanim sartlari.",
+  alternates: {
+    canonical: getAbsoluteUrl("/kullanim-sartlari"),
+  },
 };
 
 export default function TermsPage() {

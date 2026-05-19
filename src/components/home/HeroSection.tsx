@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import type { Post } from "@/types/post";
 import { formatDate } from "@/utils/formatDate";
+import { formatReadingTime } from "@/utils/readingTime";
 
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
@@ -13,6 +14,8 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ featuredPost, sidePosts }: HeroSectionProps) {
+  const featuredReadingTime = featuredPost.readingTimeMinutes;
+
   return (
     <section className="pt-8 sm:pt-10">
       <div className="grid gap-6 lg:grid-cols-[1.35fr_0.85fr]">
@@ -57,6 +60,11 @@ export function HeroSection({ featuredPost, sidePosts }: HeroSectionProps) {
                 <div className="flex flex-wrap items-center gap-3">
                   <Badge>{featuredPost.category}</Badge>
                   <span className="text-sm text-[#d1d5db]">{formatDate(featuredPost.createdAt)}</span>
+                  {featuredReadingTime ? (
+                    <span className="text-sm text-[#d1d5db]">
+                      {formatReadingTime(featuredReadingTime)}
+                    </span>
+                  ) : null}
                 </div>
                 <h2 className="text-2xl font-semibold leading-9">{featuredPost.title}</h2>
                 <p className="text-base leading-7 text-[#e5e7eb]">{featuredPost.summary}</p>
@@ -75,6 +83,11 @@ export function HeroSection({ featuredPost, sidePosts }: HeroSectionProps) {
               <div className="flex flex-wrap items-center gap-3">
                 <Badge>{post.category}</Badge>
                 <span className="text-sm text-[#6b7280]">{formatDate(post.createdAt)}</span>
+                {post.readingTimeMinutes ? (
+                  <span className="text-sm text-[#6b7280]">
+                    {formatReadingTime(post.readingTimeMinutes)}
+                  </span>
+                ) : null}
               </div>
               <h3 className="mt-4 text-2xl font-semibold leading-9 text-[#111827]">{post.title}</h3>
               <p className="mt-3 text-base leading-7 text-[#4b5563]">{post.summary}</p>

@@ -107,6 +107,7 @@ export async function createPostReport(
 
   const duplicate = await prisma.report.findFirst({
     where: {
+      type: ReportType.POST,
       reporterId: session.user.id,
       postId: post.id,
       status: {
@@ -207,6 +208,7 @@ export async function createCommentReport(
 
   const duplicate = await prisma.report.findFirst({
     where: {
+      type: ReportType.COMMENT,
       reporterId: session.user.id,
       commentId: comment.id,
       status: {

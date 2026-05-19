@@ -7,6 +7,7 @@ import { PostGrid } from "@/components/post/PostGrid";
 import { Button } from "@/components/ui/Button";
 import { Pagination } from "@/components/ui/Pagination";
 import { getPublicCategories, getPublicPosts } from "@/lib/content";
+import { getAbsoluteUrl, siteName } from "@/lib/site";
 import { paginateItems, parsePageParam } from "@/utils/pagination";
 
 type CategoryPageProps = {
@@ -27,13 +28,25 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   if (!category) {
     return {
-      title: "Kategori bulunamadi | bunediyola",
+      title: "Kategori bulunamadi",
     };
   }
 
+  const categoryUrl = getAbsoluteUrl(`/kategori/${category.slug}`);
+
   return {
-    title: `${category.name} | bunediyola`,
+    title: category.name,
     description: category.description,
+    alternates: {
+      canonical: categoryUrl,
+    },
+    openGraph: {
+      type: "website",
+      url: categoryUrl,
+      siteName,
+      title: `${category.name} icerikleri`,
+      description: category.description,
+    },
   };
 }
 

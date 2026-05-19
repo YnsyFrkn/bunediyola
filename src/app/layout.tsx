@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Serif_Display, Manrope } from "next/font/google";
 
 import { AppShell } from "@/components/layout/AppShell";
+import { getAbsoluteImageUrl, getSiteUrl, siteDescription, siteName } from "@/lib/site";
 
 import "./globals.css";
 
@@ -17,9 +18,38 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "bunediyola | Sade ve modern icerik platformu",
-  description:
-    "Gundemden mizaha, teknolojiden yasama kadar farkli konularda kolay gezilen bir icerik deneyimi.",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: "bunediyola | Sade ve modern icerik platformu",
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  applicationName: siteName,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "/",
+    siteName,
+    title: "bunediyola | Sade ve modern icerik platformu",
+    description: siteDescription,
+    images: [
+      {
+        url: getAbsoluteImageUrl("/images/posts/gundem-gunluk.svg"),
+        width: 1200,
+        height: 630,
+        alt: "bunediyola",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "bunediyola | Sade ve modern icerik platformu",
+    description: siteDescription,
+    images: [getAbsoluteImageUrl("/images/posts/gundem-gunluk.svg")],
+  },
 };
 
 export default function RootLayout({

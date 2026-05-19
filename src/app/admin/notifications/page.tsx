@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import {
   getAdminNotifications,
+  getUnreadNotificationCount,
   markAllNotificationsAsRead,
   type NotificationFilter,
 } from "@/actions/notificationActions";
@@ -48,8 +49,10 @@ export default async function AdminNotificationsPage({
   const params = await searchParams;
   const activeFilter = parseFilter(params.filter);
   const page = parsePage(params.page);
-  const { notifications, pagination } = await getAdminNotifications(activeFilter, page);
-  const hasUnread = notifications.some((notification) => !notification.isRead);
+  const [{ notifications, pagination }, unreadCount] = await Promise.all([
+    getAdminNotifications(activeFilter, page),
+    getUnreadNotificationCount(),
+  ]);
 
   return (
     <>
@@ -57,10 +60,10 @@ export default async function AdminNotificationsPage({
         title="Bildirimler"
         description="Yeni yorumlari ve kullanici hareketlerini tek yerden takip edebilirsin."
         actions={
-          hasUnread ? (
+          unreadCount > 0 ? (
             <AdminActionForm
               action={markAllNotificationsAsRead}
-              label="Tumunu okundu yap"
+              label={`Tumunu okundu yap (${unreadCount})`}
               variant="success"
             />
           ) : null

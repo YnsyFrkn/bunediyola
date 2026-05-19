@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 
 import { InfoPage } from "@/components/layout/InfoPage";
+import { getAbsoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Gizlilik Politikasi | bunediyola",
+  title: "Gizlilik Politikasi",
   description: "bunediyola gizlilik politikasi.",
+  alternates: {
+    canonical: getAbsoluteUrl("/gizlilik-politikasi"),
+  },
 };
 
 export default function PrivacyPolicyPage() {

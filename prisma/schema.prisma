@@ -27,6 +27,7 @@ model Post {
   coverImage String?
   author     String     @default("bunediyola ekibi")
   status     PostStatus @default(DRAFT)
+  isEditorPick Boolean   @default(false)
   viewCount  Int        @default(0)
   categoryId String
   category   Category   @relation(fields: [categoryId], references: [id])
@@ -34,9 +35,31 @@ model Post {
   likes      Like[]
   favorites  Favorite[]
   reports    Report[]
+  postTags   PostTag[]
   deletedAt  DateTime?
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+}
+
+model Tag {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  postTags  PostTag[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model PostTag {
+  postId    String
+  tagId     String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([postId, tagId])
+  @@index([tagId])
+  @@index([postId])
 }
 
 model User {

@@ -10,6 +10,8 @@ export const postSchema = z.object({
   coverImage: z.string().trim().optional(),
   author: z.string().trim().min(1, "Yazar adi bos birakilamaz."),
   categoryId: z.string().trim().min(1, "Kategori secmelisin."),
+  tags: z.string().trim().max(240, "Etiketler en fazla 240 karakter olabilir.").optional(),
+  isEditorPick: z.boolean(),
   status: z
     .string()
     .trim()
@@ -17,6 +19,7 @@ export const postSchema = z.object({
 });
 
 export function parsePostInput(formData: FormData) {
+  const isEditorPick = formData.get("isEditorPick") === "on";
   const rawInput = {
     title: String(formData.get("title") ?? ""),
     slug: String(formData.get("slug") ?? ""),
@@ -25,12 +28,15 @@ export function parsePostInput(formData: FormData) {
     coverImage: String(formData.get("coverImage") ?? ""),
     author: String(formData.get("author") ?? "bunediyola ekibi"),
     categoryId: String(formData.get("categoryId") ?? ""),
+    tags: String(formData.get("tags") ?? ""),
+    isEditorPick: isEditorPick ? "on" : "",
     status: String(formData.get("status") ?? ""),
   };
 
   const result = postSchema.safeParse({
     ...rawInput,
     slug: slugify(rawInput.slug),
+    isEditorPick,
   });
 
   if (!result.success) {
@@ -43,6 +49,23 @@ export function parsePostInput(formData: FormData) {
 
   return {
     success: true as const,
-    data: result.data,
+    data: {
+      title: result.data.title,
+      slug: result.data.slug,
+      summary: result.data.summary,
+      content: result.data.content,
+      coverImage: result.data.coverImage,
+      author: result.data.author,
+      categoryId: result.data.categoryId,
+      isEditorPick: result.data.isEditorPick,
+      status: result.data.status,
+      tagNames: result.data.tags
+        ? result.data.tags
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter(Boolean)
+            .slice(0, 8)
+        : [],
+    },
   };
 }
