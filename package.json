@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
+     "build": "next build",
+"start": "next start -p 8080",
     "lint": "eslint",
     "db:start": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"& 'C:\\Program Files\\PostgreSQL\\16\\bin\\pg_ctl.exe' -D '.postgres-data' -l '.postgres-run\\postgres.log' -o '-p 5433' start\"",
     "db:stop": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"& 'C:\\Program Files\\PostgreSQL\\16\\bin\\pg_ctl.exe' -D '.postgres-data' stop\"",
