@@ -50,6 +50,20 @@ export default async function HomePage() {
   const latestPosts = [...publicPosts].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   const heroPost = featuredPosts[0] ?? latestPosts[0];
   const homepageFeaturedPosts = featuredPosts.length > 0 ? featuredPosts : latestPosts.slice(0, 3);
+  const homepageEditorPicks =
+    editorPickPosts.length > 0 ? editorPickPosts : homepageFeaturedPosts.slice(0, 6);
+  const homepageTrendingTags =
+    trendingTags.length > 0
+      ? trendingTags
+      : categories
+          .map((category) => ({
+            name: category.name,
+            slug: category.slug,
+            postCount: publicPosts.filter((post) => post.categorySlug === category.slug).length,
+          }))
+          .filter((category) => category.postCount > 0)
+          .sort((a, b) => b.postCount - a.postCount || a.name.localeCompare(b.name, "tr"))
+          .slice(0, 12);
 
   if (!heroPost) {
     return (
@@ -66,7 +80,7 @@ export default async function HomePage() {
             ve yeni icerikler hazirlandikca burada gorunecek.
           </p>
         </section>
-        <TrendingTopics tags={trendingTags} />
+        <TrendingTopics tags={homepageTrendingTags} />
         <CategorySection categories={categories} />
       </Container>
     );
@@ -80,8 +94,8 @@ export default async function HomePage() {
   return (
     <Container className="space-y-16 py-8 sm:space-y-20 sm:py-10">
       <HeroSection featuredPost={heroPost} sidePosts={heroSidePosts} />
-      <TrendingTopics tags={trendingTags} />
-      <EditorPicksSection posts={editorPickPosts} />
+      <TrendingTopics tags={homepageTrendingTags} />
+      <EditorPicksSection posts={homepageEditorPicks} />
       <CategorySection categories={categories} />
       <FeaturedPosts posts={homepageFeaturedPosts} />
       <ReaderPulseSection

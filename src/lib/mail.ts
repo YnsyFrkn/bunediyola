@@ -21,16 +21,35 @@ function getRequiredEnv(name: string) {
   return value;
 }
 
-export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordResetEmailInput) {
-  const transporter = nodemailer.createTransport({
+export function isMailConfigured() {
+  return ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD", "SMTP_FROM"].every(
+    (name) => Boolean(process.env[name]?.trim()),
+  );
+}
+
+function createMailTransporter() {
+  const port = Number(getRequiredEnv("SMTP_PORT"));
+
+  if (!Number.isInteger(port) || port <= 0) {
+    throw new Error("SMTP_PORT environment variable must be a valid port.");
+  }
+
+  return nodemailer.createTransport({
     host: getRequiredEnv("SMTP_HOST"),
-    port: Number(getRequiredEnv("SMTP_PORT")),
+    port,
     secure: process.env.SMTP_SECURE === "true",
     auth: {
       user: getRequiredEnv("SMTP_USER"),
       pass: getRequiredEnv("SMTP_PASSWORD"),
     },
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 20_000,
   });
+}
+
+export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordResetEmailInput) {
+  const transporter = createMailTransporter();
 
   await transporter.sendMail({
     from: getRequiredEnv("SMTP_FROM"),
@@ -62,15 +81,7 @@ export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordReset
 }
 
 export async function sendWelcomeEmail({ to, name, loginUrl }: SendWelcomeEmailInput) {
-  const transporter = nodemailer.createTransport({
-    host: getRequiredEnv("SMTP_HOST"),
-    port: Number(getRequiredEnv("SMTP_PORT")),
-    secure: process.env.SMTP_SECURE === "true",
-    auth: {
-      user: getRequiredEnv("SMTP_USER"),
-      pass: getRequiredEnv("SMTP_PASSWORD"),
-    },
-  });
+  const transporter = createMailTransporter();
 
   const displayName = name?.trim() || "Merhaba";
 

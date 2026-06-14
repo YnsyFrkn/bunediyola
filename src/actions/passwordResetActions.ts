@@ -176,7 +176,9 @@ export async function requestPasswordReset(
       to: user.email,
       resetUrl,
     });
-  } catch {
+  } catch (error) {
+    console.error("Sifre sifirlama emaili gonderilemedi", error);
+
     await prisma.passwordResetToken.deleteMany({
       where: {
         tokenHash,

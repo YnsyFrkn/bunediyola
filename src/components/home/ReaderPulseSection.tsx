@@ -77,10 +77,6 @@ export function ReaderPulseSection({
   mostCommentedPosts,
   mostLikedPosts,
 }: ReaderPulseSectionProps) {
-  if (mostCommentedPosts.length === 0 && mostLikedPosts.length === 0) {
-    return null;
-  }
-
   return (
     <section className="space-y-8">
       <SectionTitle

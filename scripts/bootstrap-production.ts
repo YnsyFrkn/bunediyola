@@ -45,12 +45,48 @@ async function seedContentIfEmpty() {
         coverImage: post.image,
         author: post.author,
         status: post.status === "DRAFT" ? "DRAFT" : "PUBLISHED",
+        isEditorPick: Boolean(post.isFeatured),
         viewCount: post.viewCount,
         categoryId: category.id,
         createdAt: new Date(post.createdAt),
       },
     });
   }
+}
+
+async function seedEditorPicksIfEmpty() {
+  const editorPickCount = await prisma.post.count({
+    where: {
+      isEditorPick: true,
+      deletedAt: null,
+      status: "PUBLISHED",
+    },
+  });
+
+  if (editorPickCount > 0) {
+    return;
+  }
+
+  const editorPickSlugs = posts
+    .filter((post) => post.status !== "DRAFT" && post.isFeatured)
+    .map((post) => post.slug);
+
+  if (editorPickSlugs.length === 0) {
+    return;
+  }
+
+  await prisma.post.updateMany({
+    where: {
+      slug: {
+        in: editorPickSlugs,
+      },
+      deletedAt: null,
+      status: "PUBLISHED",
+    },
+    data: {
+      isEditorPick: true,
+    },
+  });
 }
 
 async function seedAdminIfConfigured() {
@@ -83,6 +119,7 @@ async function seedAdminIfConfigured() {
 
 async function main() {
   await seedContentIfEmpty();
+  await seedEditorPicksIfEmpty();
   await seedAdminIfConfigured();
 }
 

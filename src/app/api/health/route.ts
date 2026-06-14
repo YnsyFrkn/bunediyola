@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { isMailConfigured } from "@/lib/mail";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +18,9 @@ export async function GET() {
         users: userCount,
         categories: categoryCount,
         posts: postCount,
+      },
+      services: {
+        mailConfigured: isMailConfigured(),
       },
     });
   } catch {

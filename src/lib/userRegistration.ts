@@ -1,4 +1,4 @@
-import { NotificationType, UserRole } from "@prisma/client";
+import { NotificationType, Prisma, UserRole } from "@prisma/client";
 
 import { createNotification } from "@/actions/notificationActions";
 import { sendWelcomeEmail } from "@/lib/mail";
@@ -27,19 +27,37 @@ export async function createUserAccount({ name, email, password }: RegisterUserI
   }
 
   const passwordHash = await hashPassword(password);
-  const user = await prisma.user.create({
-    data: {
-      name,
-      email,
-      passwordHash,
-      role: UserRole.USER,
-    },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-    },
-  });
+  let user: {
+    id: string;
+    name: string | null;
+    email: string;
+  };
+
+  try {
+    user = await prisma.user.create({
+      data: {
+        name,
+        email,
+        passwordHash,
+        role: UserRole.USER,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+      return {
+        success: false as const,
+        code: "EMAIL_EXISTS",
+        message: "Bu email adresi zaten kayitli.",
+      };
+    }
+
+    throw error;
+  }
 
   try {
     await createNotification({

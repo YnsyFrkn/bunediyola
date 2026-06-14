@@ -72,3 +72,7 @@ The healthcheck endpoint is:
 ```text
 /api/health
 ```
+
+`services.mailConfigured` must be `true`. For Gmail, `SMTP_PASSWORD` must be a
+Google App Password, not the normal account password. Enable two-step
+verification, generate a new app password, and store it only in Railway.
