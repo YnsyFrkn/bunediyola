@@ -330,7 +330,9 @@ export async function updateUserProfile(
         bio: parsed.data.bio ?? "",
       },
     };
-  } catch {
+  } catch (error) {
+    console.error("Profil guncellenemedi", error);
+
     return {
       success: false,
       message: "Profil guncellenemedi. Lutfen tekrar dene.",
