@@ -14,14 +14,19 @@ type SendWelcomeEmailInput = {
 type MailFailureReason =
   | "not_configured"
   | "authentication_failed"
+  | "sender_not_verified"
+  | "api_failed"
   | "connection_failed"
   | "timeout"
   | "unknown";
+
+type MailProvider = "resend" | "smtp";
 
 type MailError = Error & {
   code?: string;
   responseCode?: number;
   command?: string;
+  reason?: MailFailureReason;
 };
 
 function getRequiredEnv(name: string) {
@@ -49,9 +54,29 @@ function escapeHtml(value: string) {
 }
 
 export function isMailConfigured() {
-  return ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD", "SMTP_FROM"].every(
-    (name) => Boolean(process.env[name]?.trim()),
+  return isResendConfigured() || isSmtpConfigured();
+}
+
+function isResendConfigured() {
+  return Boolean(process.env.RESEND_API_KEY?.trim() && process.env.RESEND_FROM?.trim());
+}
+
+function isSmtpConfigured() {
+  return ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD", "SMTP_FROM"].every((name) =>
+    Boolean(process.env[name]?.trim()),
   );
+}
+
+function getMailProvider(): MailProvider | null {
+  if (isResendConfigured()) {
+    return "resend";
+  }
+
+  if (isSmtpConfigured()) {
+    return "smtp";
+  }
+
+  return null;
 }
 
 function createMailTransporter() {
@@ -85,6 +110,10 @@ function createMailTransporter() {
 function getMailFailureReason(error: unknown): MailFailureReason {
   const mailError = error as MailError;
 
+  if (mailError.reason) {
+    return mailError.reason;
+  }
+
   if (mailError.responseCode === 535 || mailError.code === "EAUTH") {
     return "authentication_failed";
   }
@@ -100,12 +129,122 @@ function getMailFailureReason(error: unknown): MailFailureReason {
   return "unknown";
 }
 
+async function sendWithResend({
+  to,
+  subject,
+  text,
+  html,
+}: {
+  to: string;
+  subject: string;
+  text: string;
+  html: string;
+}) {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getRequiredEnv("RESEND_API_KEY").trim()}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: getRequiredEnv("RESEND_FROM").trim(),
+      to: [to],
+      subject,
+      text,
+      html,
+    }),
+    signal: AbortSignal.timeout(20_000),
+  });
+
+  if (response.ok) {
+    return;
+  }
+
+  const body = (await response.json().catch(() => null)) as
+    | {
+        name?: string;
+        message?: string;
+      }
+    | null;
+  const error = new Error(body?.message || `Resend API request failed with ${response.status}.`) as MailError;
+
+  if (response.status === 401 || response.status === 403) {
+    error.reason = "authentication_failed";
+  } else if (
+    body?.name === "validation_error" &&
+    body.message?.toLowerCase().includes("domain")
+  ) {
+    error.reason = "sender_not_verified";
+  } else {
+    error.reason = "api_failed";
+  }
+
+  throw error;
+}
+
+async function sendMailMessage({
+  to,
+  subject,
+  text,
+  html,
+}: {
+  to: string;
+  subject: string;
+  text: string;
+  html: string;
+}) {
+  const provider = getMailProvider();
+
+  if (provider === "resend") {
+    await sendWithResend({
+      to,
+      subject,
+      text,
+      html,
+    });
+    return;
+  }
+
+  if (provider === "smtp") {
+    const transporter = createMailTransporter();
+
+    try {
+      await transporter.sendMail({
+        from: getRequiredEnv("SMTP_FROM"),
+        to,
+        subject,
+        text,
+        html,
+      });
+    } finally {
+      transporter.close();
+    }
+    return;
+  }
+
+  const error = new Error("Mail provider is not configured.") as MailError;
+  error.reason = "not_configured";
+  throw error;
+}
+
 export async function verifyMailConnection() {
-  if (!isMailConfigured()) {
+  const provider = getMailProvider();
+
+  if (!provider) {
     return {
       configured: false,
       connected: false,
       reason: "not_configured" as const,
+      provider: null,
+    };
+  }
+
+  if (provider === "resend") {
+    return {
+      configured: true,
+      connected: true,
+      reason: null,
+      provider,
     };
   }
 
@@ -118,6 +257,7 @@ export async function verifyMailConnection() {
       configured: true,
       connected: true,
       reason: null,
+      provider,
     };
   } catch (error) {
     console.error("SMTP baglanti dogrulamasi basarisiz", error);
@@ -126,6 +266,7 @@ export async function verifyMailConnection() {
       configured: true,
       connected: false,
       reason: getMailFailureReason(error),
+      provider,
     };
   } finally {
     transporter.close();
@@ -133,11 +274,8 @@ export async function verifyMailConnection() {
 }
 
 export async function sendMailHealthTestEmail(to: string) {
-  const transporter = createMailTransporter();
-
   try {
-    await transporter.sendMail({
-      from: getRequiredEnv("SMTP_FROM"),
+    await sendMailMessage({
       to,
       subject: "bunediyola email testi",
       text: [
@@ -166,17 +304,13 @@ export async function sendMailHealthTestEmail(to: string) {
       sent: false as const,
       reason: getMailFailureReason(error),
     };
-  } finally {
-    transporter.close();
   }
 }
 
 export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordResetEmailInput) {
-  const transporter = createMailTransporter();
   const safeResetUrl = escapeHtml(resetUrl);
 
-  await transporter.sendMail({
-    from: getRequiredEnv("SMTP_FROM"),
+  await sendMailMessage({
     to,
     subject: "bunediyola sifre sifirlama",
     text: [
@@ -205,15 +339,12 @@ export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordReset
 }
 
 export async function sendWelcomeEmail({ to, name, loginUrl }: SendWelcomeEmailInput) {
-  const transporter = createMailTransporter();
-
   const displayName = name?.trim() || "Merhaba";
   const safeDisplayName = escapeHtml(displayName);
   const safeEmail = escapeHtml(to);
   const safeLoginUrl = escapeHtml(loginUrl);
 
-  await transporter.sendMail({
-    from: getRequiredEnv("SMTP_FROM"),
+  await sendMailMessage({
     to,
     subject: "bunediyola hesabiniz olusturuldu",
     text: [

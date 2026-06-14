@@ -7,6 +7,8 @@ type MailHealthState = "idle" | "checking" | "connected" | "failed";
 type MailFailureReason =
   | "not_configured"
   | "authentication_failed"
+  | "sender_not_verified"
+  | "api_failed"
   | "connection_failed"
   | "timeout"
   | "unknown";
@@ -14,7 +16,10 @@ type MailFailureReason =
 const failureMessages: Record<MailFailureReason, string> = {
   not_configured: "Railway SMTP degiskenlerinden biri eksik.",
   authentication_failed:
-    "Gmail SMTP_USER veya uygulama sifresini kabul etmedi. Ikisinin ayni Google hesabina ait oldugunu kontrol et.",
+    "Mail servisi API anahtarini veya SMTP bilgilerini kabul etmedi.",
+  sender_not_verified:
+    "Resend gonderici alan adini dogrulamadi. RESEND_FROM icin dogrulanmis bir domain kullan.",
+  api_failed: "Resend API istegi basarisiz oldu. API anahtari, gonderici adresi ve Resend loglarini kontrol et.",
   connection_failed: "Railway Gmail sunucusuna baglanamadi. SMTP host ve port ayarlarini kontrol et.",
   timeout: "Gmail baglantisi zaman asimina ugradi. Biraz sonra yeniden dene.",
   unknown: "SMTP testi bilinmeyen bir hatayla tamamlanamadi. Railway loglarini kontrol et.",
@@ -74,7 +79,7 @@ export function MailHealthCheck() {
           ? "Test maili admin email adresine gonderildi. Hos geldin ve sifre sifirlama mailleri hazir."
           : state === "failed"
             ? failureMessages[failureReason ?? "unknown"]
-            : "Gmail baglantisini dogrular ve admin email adresine gercek bir test mesaji gonderir."}
+            : "Mail servisini dogrular ve admin email adresine gercek bir test mesaji gonderir."}
       </p>
       <button
         type="button"

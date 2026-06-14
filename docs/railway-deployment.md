@@ -23,6 +23,8 @@ SMTP_SECURE=false
 SMTP_USER=<smtp-user>
 SMTP_PASSWORD=<new-smtp-app-password>
 SMTP_FROM=bunediyola destek <support@example.com>
+RESEND_API_KEY=<resend-api-key>
+RESEND_FROM=bunediyola <noreply@mail.example.com>
 ADMIN_EMAIL=<admin-email>
 ADMIN_PASSWORD=<strong-admin-password>
 ```
@@ -73,6 +75,13 @@ The healthcheck endpoint is:
 /api/health
 ```
 
-`services.mailConfigured` must be `true`. For Gmail, `SMTP_PASSWORD` must be a
-Google App Password, not the normal account password. Enable two-step
-verification, generate a new app password, and store it only in Railway.
+`services.mailConfigured` must be `true`.
+
+Railway Free, Trial, and Hobby plans block outbound SMTP. On these plans, use
+the Resend HTTPS API by setting `RESEND_API_KEY` and `RESEND_FROM`. The sender
+address must use a domain verified in Resend. When Resend is configured, the
+application prefers it over SMTP.
+
+SMTP remains available as a fallback for Railway Pro plans and above. For
+Gmail SMTP, `SMTP_PASSWORD` must be a Google App Password, not the normal
+account password.
