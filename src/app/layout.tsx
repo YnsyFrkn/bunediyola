@@ -65,7 +65,25 @@ export default async function RootLayout({
       lang="tr"
       data-scroll-behavior="smooth"
       className={`${manrope.variable} ${dmSerifDisplay.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var savedTheme = localStorage.getItem("bunediyola-theme");
+                var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                var theme = savedTheme === "dark" || savedTheme === "light"
+                  ? savedTheme
+                  : (prefersDark ? "dark" : "light");
+                document.documentElement.classList.toggle("dark", theme === "dark");
+                document.documentElement.style.colorScheme = theme;
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-[#fffbf7] text-[#111827] antialiased">
         <div className="relative flex min-h-screen flex-col">
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(251,146,60,0.22),_transparent_38%),radial-gradient(circle_at_top_right,_rgba(251,191,36,0.18),_transparent_28%),linear-gradient(180deg,_#fff7ed_0%,_#fffbf7_55%,_#fffbf7_100%)]" />

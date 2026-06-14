@@ -21,6 +21,20 @@ function getRequiredEnv(name: string) {
   return value;
 }
 
+function escapeHtml(value: string) {
+  return value.replace(
+    /[&<>"']/g,
+    (character) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      })[character] ?? character,
+  );
+}
+
 export function isMailConfigured() {
   return ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD", "SMTP_FROM"].every(
     (name) => Boolean(process.env[name]?.trim()),
@@ -48,8 +62,38 @@ function createMailTransporter() {
   });
 }
 
+export async function verifyMailConnection() {
+  if (!isMailConfigured()) {
+    return {
+      configured: false,
+      connected: false,
+    };
+  }
+
+  const transporter = createMailTransporter();
+
+  try {
+    await transporter.verify();
+
+    return {
+      configured: true,
+      connected: true,
+    };
+  } catch (error) {
+    console.error("SMTP baglanti dogrulamasi basarisiz", error);
+
+    return {
+      configured: true,
+      connected: false,
+    };
+  } finally {
+    transporter.close();
+  }
+}
+
 export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordResetEmailInput) {
   const transporter = createMailTransporter();
+  const safeResetUrl = escapeHtml(resetUrl);
 
   await transporter.sendMail({
     from: getRequiredEnv("SMTP_FROM"),
@@ -68,12 +112,12 @@ export async function sendPasswordResetEmail({ to, resetUrl }: SendPasswordReset
         <h1 style="font-size: 24px;">Sifreni sifirla</h1>
         <p>bunediyola hesabinin sifresini sifirlamak icin asagidaki butonu kullanabilirsin.</p>
         <p>
-          <a href="${resetUrl}" style="display: inline-block; background: #111827; color: #ffffff; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700;">
+          <a href="${safeResetUrl}" style="display: inline-block; background: #111827; color: #ffffff; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700;">
             Sifremi Sifirla
           </a>
         </p>
         <p>Buton calismazsa bu linki tarayicina yapistir:</p>
-        <p style="word-break: break-all;">${resetUrl}</p>
+        <p style="word-break: break-all;">${safeResetUrl}</p>
         <p>Bu istegi sen yapmadiysan bu emaili yok sayabilirsin.</p>
       </div>
     `,
@@ -84,6 +128,9 @@ export async function sendWelcomeEmail({ to, name, loginUrl }: SendWelcomeEmailI
   const transporter = createMailTransporter();
 
   const displayName = name?.trim() || "Merhaba";
+  const safeDisplayName = escapeHtml(displayName);
+  const safeEmail = escapeHtml(to);
+  const safeLoginUrl = escapeHtml(loginUrl);
 
   await transporter.sendMail({
     from: getRequiredEnv("SMTP_FROM"),
@@ -104,16 +151,16 @@ export async function sendWelcomeEmail({ to, name, loginUrl }: SendWelcomeEmailI
     html: `
       <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
         <h1 style="font-size: 24px;">bunediyola'ya hos geldiniz</h1>
-        <p>${displayName}, hesabiniz basariyla olusturuldu.</p>
-        <p><strong>Kayitli email:</strong> ${to}</p>
+        <p>${safeDisplayName}, hesabiniz basariyla olusturuldu.</p>
+        <p><strong>Kayitli email:</strong> ${safeEmail}</p>
         <p>Guvenliginiz icin sifreniz email ile gonderilmez ve duz metin olarak saklanmaz.</p>
         <p>
-          <a href="${loginUrl}" style="display: inline-block; background: #111827; color: #ffffff; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700;">
+          <a href="${safeLoginUrl}" style="display: inline-block; background: #111827; color: #ffffff; padding: 12px 18px; border-radius: 999px; text-decoration: none; font-weight: 700;">
             Giris Yap
           </a>
         </p>
         <p>Buton calismazsa bu linki tarayicina yapistir:</p>
-        <p style="word-break: break-all;">${loginUrl}</p>
+        <p style="word-break: break-all;">${safeLoginUrl}</p>
       </div>
     `,
   });

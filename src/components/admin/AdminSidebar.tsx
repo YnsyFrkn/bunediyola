@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { LogoutButton } from "@/components/auth/LogoutButton";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const menuItems = [
   { href: "/admin", label: "Panel" },
@@ -77,6 +78,7 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
           Panel yalnizca admin oturumu olan kullanicilar icin aciktir. Isin bittiginde guvenli
           sekilde cikis yapabilirsin.
         </p>
+        <ThemeToggle compact />
         <LogoutButton />
       </div>
     </aside>

@@ -8,6 +8,10 @@
   color-scheme: light;
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -32,4 +36,90 @@ img {
 ::selection {
   background: #fdba74;
   color: #111827;
+}
+
+html.dark body {
+  background: #0f1117 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark [class~="bg-white"],
+html.dark [class~="bg-[#fffbf7]"],
+html.dark [class~="bg-[#fffaf5]"],
+html.dark [class~="bg-[#fff7ed]"],
+html.dark [class~="bg-[#fff2e8]"],
+html.dark [class~="bg-[#f9fafb]"],
+html.dark [class~="bg-[#f9ede3]"],
+html.dark [class~="bg-[#f7f4ef]"],
+html.dark [class~="bg-[#f3f4f6]"] {
+  background-color: #191c24 !important;
+}
+
+html.dark [class*="bg-[rgba(255,251,247"],
+html.dark [class*="bg-[radial-gradient"] {
+  background: rgba(15, 17, 23, 0.94) !important;
+}
+
+html.dark [class~="text-[#111827]"],
+html.dark [class~="text-[#1f2937]"],
+html.dark [class~="text-[#374151]"] {
+  color: #f3f4f6 !important;
+}
+
+html.dark [class~="text-[#4b5563]"],
+html.dark [class~="text-[#6b7280]"],
+html.dark [class~="text-[#9ca3af]"] {
+  color: #b8bfcc !important;
+}
+
+html.dark [class~="border-[#e5e7eb]"],
+html.dark [class~="border-[#e7e5e4]"],
+html.dark [class~="border-[#d6d3d1]"],
+html.dark [class~="border-[#e8ddd2]"],
+html.dark [class~="border-[#f1e3d9]"],
+html.dark [class~="border-[#f1e6dd]"],
+html.dark [class~="border-[#f3ebe3]"],
+html.dark [class~="border-[#f4d9c5]"],
+html.dark [class~="border-black/5"] {
+  border-color: #343945 !important;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  border-color: #3b414d !important;
+  background-color: #11141b !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #7f8794 !important;
+}
+
+html.dark input:read-only {
+  background-color: #222630 !important;
+}
+
+html.dark [class~="bg-[#fef2f2]"],
+html.dark [class~="bg-[#fee2e2]"] {
+  background-color: #3a1d24 !important;
+}
+
+html.dark [class~="bg-[#f0fdf4]"],
+html.dark [class~="bg-[#dcfce7]"] {
+  background-color: #153326 !important;
+}
+
+html.dark [class~="bg-[#eff6ff]"] {
+  background-color: #172a46 !important;
+}
+
+html.dark [class~="bg-[#fef3c7]"] {
+  background-color: #3b3015 !important;
+}
+
+html.dark [class~="shadow-sm"],
+html.dark [class*="shadow-["] {
+  --tw-shadow-color: rgba(0, 0, 0, 0.34);
 }

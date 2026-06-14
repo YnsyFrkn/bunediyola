@@ -5,6 +5,7 @@ import { getCategories } from "@/actions/categoryActions";
 import { getUnreadNotificationCount } from "@/actions/notificationActions";
 import { getPosts } from "@/actions/postActions";
 import { AdminHeader } from "@/components/admin/AdminHeader";
+import { MailHealthCheck } from "@/components/admin/MailHealthCheck";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { AdminStatCard } from "@/components/admin/AdminStatCard";
 import { AdminTable } from "@/components/admin/AdminTable";
@@ -69,6 +70,8 @@ export default async function AdminDashboardPage() {
           />
         </Link>
       </section>
+
+      <MailHealthCheck />
 
       <section className="space-y-4">
         <div className="flex items-center justify-between gap-4">
