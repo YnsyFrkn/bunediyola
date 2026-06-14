@@ -21,6 +21,8 @@ type CategoryPageProps = {
 
 const CATEGORY_PAGE_SIZE = 9;
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { slug } = await params;
   const categories = await getPublicCategories();
@@ -48,10 +50,6 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
       description: category.description,
     },
   };
-}
-
-export function generateStaticParams() {
-  return [];
 }
 
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {

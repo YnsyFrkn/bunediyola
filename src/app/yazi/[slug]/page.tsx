@@ -12,6 +12,8 @@ type PostPageProps = {
   }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const posts = await getPublicPosts();
@@ -58,10 +60,6 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       images: [imageUrl],
     },
   };
-}
-
-export function generateStaticParams() {
-  return [];
 }
 
 export default async function PostPage({ params }: PostPageProps) {
