@@ -52,10 +52,10 @@ karsilastirarak guncel durumu tek yerde toplar.
 
 ### Faz 2 - Bunediyola Tepki Sistemi
 
-- Markaya ozel tepki tipleri.
-- Tek kullanicinin tek aktif tepkisi.
-- Tepki degistirme ve kaldirma.
-- Yazi detayinda tepki sayilari.
+- [Tamamlandi] Markaya ozel tepki tipleri.
+- [Tamamlandi] Tek kullanicinin tek aktif tepkisi.
+- [Tamamlandi] Tepki degistirme ve kaldirma.
+- [Tamamlandi] Yazi detayinda tepki sayilari.
 
 ### Faz 3 - Anket
 

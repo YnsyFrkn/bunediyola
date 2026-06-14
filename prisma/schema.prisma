@@ -33,6 +33,7 @@ model Post {
   category   Category   @relation(fields: [categoryId], references: [id])
   comments   Comment[]
   likes      Like[]
+  reactions  PostReaction[]
   favorites  Favorite[]
   reports    Report[]
   postTags   PostTag[]
@@ -76,6 +77,7 @@ model User {
   bio          String?
   comments     Comment[]
   likes        Like[]
+  reactions    PostReaction[]
   favorites    Favorite[]
   reports      Report[]
   createdAt    DateTime   @default(now())
@@ -126,6 +128,21 @@ model Like {
   createdAt DateTime @default(now())
 
   @@unique([postId, userId])
+  @@index([userId, createdAt])
+}
+
+model PostReaction {
+  id        String           @id @default(cuid())
+  postId    String
+  userId    String
+  type      PostReactionType
+  post      Post             @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@unique([postId, userId])
+  @@index([postId, type])
   @@index([userId, createdAt])
 }
 
@@ -218,6 +235,15 @@ enum PostStatus {
 enum UserRole {
   ADMIN
   USER
+}
+
+enum PostReactionType {
+  BUNE_YA
+  HARBI_MI
+  YOK_ARTIK
+  IYIYMIS
+  BOS_YAPMIS
+  KATILIYORUM
 }
 
 enum Gender {

@@ -3,11 +3,16 @@ import Link from "next/link";
 
 import { isPostFavoritedByUser } from "@/actions/favoriteActions";
 import { getLikeCount, isPostLikedByUser } from "@/actions/likeActions";
+import {
+  getPostReactionCounts,
+  getUserPostReaction,
+} from "@/actions/postReactionActions";
 import { CommentSection } from "@/components/comments/CommentSection";
 import { FavoriteButton } from "@/components/favorite/FavoriteButton";
 import { LikeButton } from "@/components/like/LikeButton";
 import { ShareButtons } from "@/components/post/ShareButtons";
 import { ReportButton } from "@/components/reports/ReportButton";
+import { PostReactionPanel } from "@/components/reaction/PostReactionPanel";
 import { auth } from "@/lib/auth";
 import { getAbsoluteUrl } from "@/lib/site";
 import type { Post } from "@/types/post";
@@ -26,10 +31,13 @@ type PostDetailProps = {
 export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
   const session = await auth();
   const readingTime = post.readingTimeMinutes;
-  const [likeCount, initialLiked, initialFavorited] = await Promise.all([
+  const [likeCount, initialLiked, initialFavorited, reactionCounts, selectedReaction] =
+    await Promise.all([
     getLikeCount(post.id),
     session?.user ? isPostLikedByUser(post.id, session.user.id) : Promise.resolve(false),
     session?.user ? isPostFavoritedByUser(post.id, session.user.id) : Promise.resolve(false),
+    getPostReactionCounts(post.id),
+    session?.user ? getUserPostReaction(post.id, session.user.id) : Promise.resolve(null),
   ]);
 
   return (
@@ -86,6 +94,13 @@ export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+
+          <PostReactionPanel
+            postId={post.id}
+            initialCounts={reactionCounts}
+            initialSelectedType={selectedReaction}
+            isAuthenticated={Boolean(session?.user)}
+          />
 
           <ShareButtons
             title={post.title}
