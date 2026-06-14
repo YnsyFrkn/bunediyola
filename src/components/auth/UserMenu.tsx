@@ -109,9 +109,6 @@ export function UserMenu({ onNavigate, compact = false }: UserMenuProps) {
         <Link href="/profil" onClick={onNavigate} className={linkClass}>
           Profilim
         </Link>
-        <Link href="/profil/favorites" onClick={onNavigate} className={linkClass}>
-          Kaydettiklerim
-        </Link>
         {user.role === "ADMIN" ? (
           <Link href="/admin" onClick={onNavigate} className={linkClass}>
             Admin Panel
@@ -166,14 +163,6 @@ export function UserMenu({ onNavigate, compact = false }: UserMenuProps) {
               role="menuitem"
             >
               Profilim
-            </Link>
-            <Link
-              href="/profil/favorites"
-              onClick={() => setIsMenuOpen(false)}
-              className="rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#fff7ed] hover:text-[#c2410c]"
-              role="menuitem"
-            >
-              Kaydettiklerim
             </Link>
             {user.role === "ADMIN" ? (
               <Link
