@@ -65,7 +65,7 @@ export function EditorPicksSection({ posts }: EditorPicksSectionProps) {
             <Link
               key={post.id}
               href={`/yazi/${post.slug}`}
-              className="grid grid-cols-[96px_1fr] gap-4 rounded-[24px] border border-[#f1e6dd] bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-[#fb923c]"
+              className="grid grid-cols-[80px_minmax(0,1fr)] gap-3 rounded-[24px] border border-[#f1e6dd] bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-[#fb923c] sm:grid-cols-[96px_minmax(0,1fr)] sm:gap-4"
             >
               <div className="relative aspect-square overflow-hidden rounded-2xl bg-[#f9ede3]">
                 <Image

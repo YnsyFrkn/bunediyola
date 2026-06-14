@@ -18,8 +18,8 @@ type AdminTableProps = {
 
 export function AdminTable({ columns, rows }: AdminTableProps) {
   return (
-    <div className="overflow-hidden rounded-[28px] border border-[#f1e6dd] bg-white shadow-sm">
-      <div className="overflow-x-auto">
+    <div className="max-w-full overflow-hidden rounded-[28px] border border-[#f1e6dd] bg-white shadow-sm">
+      <div className="overflow-x-auto overscroll-x-contain">
         <table className="min-w-full divide-y divide-[#f3ebe3]">
           <thead className="bg-[#fff7ed]">
             <tr>

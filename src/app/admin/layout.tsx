@@ -26,7 +26,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             }}
           />
         </div>
-        <section className="space-y-6">{children}</section>
+        <section className="min-w-0 space-y-6">{children}</section>
       </div>
     </div>
   );

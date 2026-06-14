@@ -41,7 +41,7 @@ function PulseList({
               <Link
                 key={post.id}
                 href={`/yazi/${post.slug}`}
-                className="grid grid-cols-[44px_72px_1fr] gap-3 rounded-[24px] border border-[#f1e6dd] bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-[#fb923c]"
+                className="grid grid-cols-[44px_64px_minmax(0,1fr)] gap-3 rounded-[24px] border border-[#f1e6dd] bg-white p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-[#fb923c] sm:grid-cols-[44px_72px_minmax(0,1fr)]"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#111827] font-heading text-lg text-white">
                   {index + 1}

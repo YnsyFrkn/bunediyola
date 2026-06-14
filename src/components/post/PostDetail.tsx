@@ -125,7 +125,7 @@ export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
       <CommentSection postId={post.id} postSlug={post.slug} />
 
       <section className="space-y-5">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#c2410c]">
               Benzer Icerikler
