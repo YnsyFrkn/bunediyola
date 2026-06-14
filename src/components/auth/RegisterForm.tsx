@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useState } from "react";
+import { useState, useTransition } from "react";
 
+import type { FormState } from "@/actions/formState";
 import { initialFormState } from "@/actions/formState";
-import { registerUser } from "@/actions/userAuthActions";
+import { registerSchema } from "@/validations/registerSchema";
 
 function FieldError({ error }: { error?: string[] }) {
   if (!error?.length) {
@@ -15,12 +16,75 @@ function FieldError({ error }: { error?: string[] }) {
 }
 
 export function RegisterForm() {
-  const [state, formAction, isPending] = useActionState(registerUser, initialFormState);
+  const [state, setState] = useState<FormState>(initialFormState);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const rawValues = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      password: String(formData.get("password") ?? ""),
+      passwordConfirm: String(formData.get("passwordConfirm") ?? ""),
+    };
+    const parsed = registerSchema.safeParse(rawValues);
+
+    if (!parsed.success) {
+      setState({
+        success: false,
+        message: "Formu kontrol edip tekrar dene.",
+        errors: parsed.error.flatten().fieldErrors,
+        values: {
+          name: rawValues.name,
+          email: rawValues.email,
+        },
+      });
+      return;
+    }
+
+    startTransition(async () => {
+      try {
+        const response = await fetch("/api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(parsed.data),
+        });
+        const result = (await response.json()) as FormState;
+
+        if (!response.ok || !result.success) {
+          setState({
+            ...result,
+            success: false,
+            values: {
+              name: parsed.data.name,
+              email: parsed.data.email,
+            },
+          });
+          return;
+        }
+
+        window.location.assign("/giris?registered=1");
+      } catch {
+        setState({
+          success: false,
+          message: "Hesap olusturulamadi. Baglantini kontrol edip tekrar dene.",
+          values: {
+            name: parsed.data.name,
+            email: parsed.data.email,
+          },
+        });
+      }
+    });
+  }
 
   return (
     <form
-      action={formAction}
+      onSubmit={handleSubmit}
       className="space-y-6 rounded-[32px] border border-[#f1e6dd] bg-white p-6 shadow-[0_18px_50px_rgba(17,24,39,0.08)] sm:p-8"
     >
       <section className="rounded-[24px] border border-[#f3ebe3] bg-[#fffaf5] p-4">

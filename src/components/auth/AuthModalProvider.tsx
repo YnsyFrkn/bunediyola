@@ -15,7 +15,6 @@ import {
 } from "react";
 
 import { initialFormState, type FormState } from "@/actions/formState";
-import { registerUserInline } from "@/actions/userAuthActions";
 import { registerSchema } from "@/validations/registerSchema";
 import { userLoginSchema } from "@/validations/userLoginSchema";
 
@@ -227,9 +226,16 @@ export function AuthModalProvider({ children }: { children: ReactNode }) {
     }
 
     startTransition(async () => {
-      const result = await registerUserInline(initialFormState, formData);
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(parsed.data),
+      });
+      const result = (await response.json()) as FormState;
 
-      if (!result.success) {
+      if (!response.ok || !result.success) {
         setRegisterState(result);
         return;
       }
