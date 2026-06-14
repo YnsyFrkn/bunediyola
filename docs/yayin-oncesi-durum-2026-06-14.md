@@ -21,30 +21,23 @@ karsilastirarak guncel durumu tek yerde toplar.
 - Sitemap, robots, canonical, Open Graph, Twitter ve Article JSON-LD.
 - Gizlilik, cerez, kullanim sartlari, KVKK ve reklam/is birligi sayfalari.
 - Dark theme, sistem tercihi ve tarayicida kalici tema secimi.
+- Mobil ana menu, admin menu ve dar ekran tasma duzeltmeleri.
+- Admin kullanici listesi: ad, email, rol ve kayit tarihi.
 - Railway health endpointi, migration ve production bootstrap akisi.
 - Production build, lint ve dinamik icerik render kontrolleri.
 
-## Acik Kritik Konu
+## Email Teslimati Durumu
 
-### Email Teslimati
-
-Kod tarafinda email akislari mevcut. Ancak 14 Haziran 2026 tarihindeki SMTP
-dogrulama testi Gmail tarafindan `535 BadCredentials` ile reddedildi.
-
-Yapilmasi gereken:
-
-1. Gmail hesabinda iki asamali dogrulamayi etkinlestir.
-2. Google App Password olustur.
-3. Railway `SMTP_PASSWORD` degerini normal hesap sifresi yerine App Password ile degistir.
-4. Admin paneldeki `SMTP Baglantisini Test Et` butonuyla yeniden dogrula.
-5. Gercek bir test kaydi ve sifre sifirlama istegiyle gelen kutusunu kontrol et.
-
-SMTP duzeltilene kadar hesaplar acilir, ancak hos geldin maili garanti degildir.
-Sifre sifirlama maili gonderilemezse kullaniciya hata doner ve token iptal edilir.
+- Railway Hobby/Trial planinda SMTP kapali oldugu icin Resend HTTPS API destegi eklendi.
+- Admin test maili `bunediyola.destekdeneme@gmail.com` adresine basariyla teslim edildi.
+- Hos geldin ve sifre sifirlama akislari Resend uzerinden calisiyor.
+- Test modunda yalniz Resend hesap sahibine mail gonderilebilir.
+- Tum kullanicilara mail icin ozel domain alinip Resend'de dogrulanmali.
 
 ## Yayin Oncesi Kalan Operasyonlar
 
-- Tek production Railway projesi ve tek ana domain belirle.
+- Ozel domain satin al ve ana domain olarak belirle.
+- Domaini Resend'de dogrula; `RESEND_FROM` degerini ozel domaine gecir.
 - Eski Railway ve Vercel baglantilarini devre disi birak.
 - `NEXTAUTH_URL` ve `NEXT_PUBLIC_APP_URL` degerlerini ana domaine ayarla.
 - Ozel domain ve SSL yonlendirmesini tamamla.
@@ -52,8 +45,8 @@ Sifre sifirlama maili gonderilemezse kullaniciya hata doner ve token iptal edili
 - Upload volume ve medya yedekleme politikasini belirle.
 - Google Search Console ve analitik kurulumu yap.
 - Sentry veya benzeri hata izleme ekle.
-- Kayit, giris, sifre sifirlama ve email teslimatini gercek gelen kutusuyla test et.
-- Mobil cihazlarda ana sayfa, auth modal, profil ve admin ekranlarini elle kontrol et.
+- Farkli gercek cihazlarda ana sayfa, auth modal, profil ve admin ekranlarini son kez kontrol et.
+- Tum kritik akislari tek bir yayin oncesi kabul testiyle tekrar dogrula.
 
 ## Sonraki Urun Fazlari
 
