@@ -8,6 +8,9 @@ type MailFailureReason =
   | "not_configured"
   | "authentication_failed"
   | "sender_not_verified"
+  | "test_recipient_restricted"
+  | "invalid_sender"
+  | "quota_exceeded"
   | "api_failed"
   | "connection_failed"
   | "timeout"
@@ -19,6 +22,11 @@ const failureMessages: Record<MailFailureReason, string> = {
     "Mail servisi API anahtarini veya SMTP bilgilerini kabul etmedi.",
   sender_not_verified:
     "Resend gonderici alan adini dogrulamadi. RESEND_FROM icin dogrulanmis bir domain kullan.",
+  test_recipient_restricted:
+    "Resend test modunda yalniz hesap sahibinin email adresine gonderebilir. Domaini dogrula veya admin emailini Resend hesap emailinle ayni yap.",
+  invalid_sender:
+    "RESEND_FROM bicimi gecersiz. Ornek: bunediyola <noreply@mail.seninalanadin.com>",
+  quota_exceeded: "Resend gonderim kotasi veya hiz siniri asildi. Resend panelindeki kullanim alanini kontrol et.",
   api_failed: "Resend API istegi basarisiz oldu. API anahtari, gonderici adresi ve Resend loglarini kontrol et.",
   connection_failed: "Railway Gmail sunucusuna baglanamadi. SMTP host ve port ayarlarini kontrol et.",
   timeout: "Gmail baglantisi zaman asimina ugradi. Biraz sonra yeniden dene.",

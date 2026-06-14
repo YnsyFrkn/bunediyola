@@ -15,6 +15,9 @@ type MailFailureReason =
   | "not_configured"
   | "authentication_failed"
   | "sender_not_verified"
+  | "test_recipient_restricted"
+  | "invalid_sender"
+  | "quota_exceeded"
   | "api_failed"
   | "connection_failed"
   | "timeout"
@@ -168,13 +171,34 @@ async function sendWithResend({
     | null;
   const error = new Error(body?.message || `Resend API request failed with ${response.status}.`) as MailError;
 
-  if (response.status === 401 || response.status === 403) {
-    error.reason = "authentication_failed";
+  const errorName = body?.name?.toLowerCase();
+  const errorMessage = body?.message?.toLowerCase() ?? "";
+
+  if (
+    errorName === "validation_error" &&
+    errorMessage.includes("only send testing emails")
+  ) {
+    error.reason = "test_recipient_restricted";
   } else if (
-    body?.name === "validation_error" &&
-    body.message?.toLowerCase().includes("domain")
+    errorName === "validation_error" &&
+    errorMessage.includes("domain") &&
+    errorMessage.includes("not verified")
   ) {
     error.reason = "sender_not_verified";
+  } else if (errorName === "invalid_from_address") {
+    error.reason = "invalid_sender";
+  } else if (
+    errorName === "monthly_quota_exceeded" ||
+    errorName === "daily_quota_exceeded" ||
+    errorName === "rate_limit_exceeded"
+  ) {
+    error.reason = "quota_exceeded";
+  } else if (
+    errorName === "missing_api_key" ||
+    errorName === "invalid_api_key" ||
+    response.status === 401
+  ) {
+    error.reason = "authentication_failed";
   } else {
     error.reason = "api_failed";
   }
