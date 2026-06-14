@@ -12,9 +12,10 @@ type RegisterUserInput = {
 };
 
 export async function createUserAccount({ name, email, password }: RegisterUserInput) {
+  const normalizedEmail = email.trim().toLowerCase();
   const existingUser = await prisma.user.findUnique({
     where: {
-      email,
+      email: normalizedEmail,
     },
   });
 
@@ -37,7 +38,7 @@ export async function createUserAccount({ name, email, password }: RegisterUserI
     user = await prisma.user.create({
       data: {
         name,
-        email,
+        email: normalizedEmail,
         passwordHash,
         role: UserRole.USER,
       },

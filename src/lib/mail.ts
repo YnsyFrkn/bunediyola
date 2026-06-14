@@ -43,18 +43,25 @@ export function isMailConfigured() {
 
 function createMailTransporter() {
   const port = Number(getRequiredEnv("SMTP_PORT"));
+  const host = getRequiredEnv("SMTP_HOST").trim();
+  const user = getRequiredEnv("SMTP_USER").trim();
+  const configuredPassword = getRequiredEnv("SMTP_PASSWORD").trim();
+  const password =
+    host.toLowerCase() === "smtp.gmail.com"
+      ? configuredPassword.replace(/\s+/g, "")
+      : configuredPassword;
 
   if (!Number.isInteger(port) || port <= 0) {
     throw new Error("SMTP_PORT environment variable must be a valid port.");
   }
 
   return nodemailer.createTransport({
-    host: getRequiredEnv("SMTP_HOST"),
+    host,
     port,
     secure: process.env.SMTP_SECURE === "true",
     auth: {
-      user: getRequiredEnv("SMTP_USER"),
-      pass: getRequiredEnv("SMTP_PASSWORD"),
+      user,
+      pass: password,
     },
     connectionTimeout: 15_000,
     greetingTimeout: 15_000,
@@ -140,6 +147,7 @@ export async function sendWelcomeEmail({ to, name, loginUrl }: SendWelcomeEmailI
       `${displayName},`,
       "",
       "bunediyola hesabiniz basariyla olusturuldu.",
+      `Kullanici adiniz: ${displayName}`,
       `Kayitli email adresiniz: ${to}`,
       "",
       "Guvenliginiz icin sifreniz email ile gonderilmez ve duz metin olarak saklanmaz.",
@@ -152,6 +160,7 @@ export async function sendWelcomeEmail({ to, name, loginUrl }: SendWelcomeEmailI
       <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
         <h1 style="font-size: 24px;">bunediyola'ya hos geldiniz</h1>
         <p>${safeDisplayName}, hesabiniz basariyla olusturuldu.</p>
+        <p><strong>Kullanici adi:</strong> ${safeDisplayName}</p>
         <p><strong>Kayitli email:</strong> ${safeEmail}</p>
         <p>Guvenliginiz icin sifreniz email ile gonderilmez ve duz metin olarak saklanmaz.</p>
         <p>

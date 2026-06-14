@@ -123,3 +123,10 @@ html.dark [class~="shadow-sm"],
 html.dark [class*="shadow-["] {
   --tw-shadow-color: rgba(0, 0, 0, 0.34);
 }
+
+html.dark .profile-menu-trigger:hover,
+html.dark .profile-menu-link:hover {
+  border-color: #ea580c !important;
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}

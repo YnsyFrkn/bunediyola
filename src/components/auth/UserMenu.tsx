@@ -75,8 +75,8 @@ export function UserMenu({ onNavigate, compact = false }: UserMenuProps) {
   }
 
   const linkClass = compact
-    ? "rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#fff7ed] hover:text-[#c2410c]"
-    : "inline-flex min-h-11 items-center whitespace-nowrap rounded-full border border-[#e7e5e4] bg-white px-4 py-2 text-sm font-semibold text-[#374151] transition hover:border-[#fdba74] hover:text-[#c2410c]";
+    ? "profile-menu-link rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#ea580c] hover:text-white"
+    : "profile-menu-trigger inline-flex min-h-11 items-center whitespace-nowrap rounded-full border border-[#e7e5e4] bg-white px-4 py-2 text-sm font-semibold text-[#374151] transition hover:border-[#ea580c] hover:bg-[#ea580c] hover:text-white";
   const primaryClass = compact
     ? "rounded-2xl bg-[#111827] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c]"
     : "inline-flex min-h-11 items-center whitespace-nowrap rounded-full bg-[#111827] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#ea580c]";
@@ -159,7 +159,7 @@ export function UserMenu({ onNavigate, compact = false }: UserMenuProps) {
             <Link
               href="/profil"
               onClick={() => setIsMenuOpen(false)}
-              className="rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#fff7ed] hover:text-[#c2410c]"
+              className="profile-menu-link rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#ea580c] hover:text-white"
               role="menuitem"
             >
               Profilim
@@ -168,7 +168,7 @@ export function UserMenu({ onNavigate, compact = false }: UserMenuProps) {
               <Link
                 href="/admin"
                 onClick={() => setIsMenuOpen(false)}
-                className="rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#fff7ed] hover:text-[#c2410c]"
+                className="profile-menu-link rounded-2xl px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:bg-[#ea580c] hover:text-white"
                 role="menuitem"
               >
                 Admin Panel

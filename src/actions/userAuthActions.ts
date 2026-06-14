@@ -1,6 +1,6 @@
 "use server";
 
-import { NotificationType, UserRole } from "@prisma/client";
+import { NotificationType, Prisma, UserRole } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 import { type FormState } from "@/actions/formState";
@@ -28,9 +28,10 @@ async function createRegisteredUser(formData: FormData): Promise<FormState & { u
     };
   }
 
+  const normalizedEmail = parsed.data.email.trim().toLowerCase();
   const existingUser = await prisma.user.findUnique({
     where: {
-      email: parsed.data.email,
+      email: normalizedEmail,
     },
   });
 
@@ -50,14 +51,39 @@ async function createRegisteredUser(formData: FormData): Promise<FormState & { u
 
   const passwordHash = await hashPassword(parsed.data.password);
 
-  const user = await prisma.user.create({
-    data: {
-      name: parsed.data.name,
-      email: parsed.data.email,
-      passwordHash,
-      role: UserRole.USER,
-    },
-  });
+  let user: CreatedUserForRegister;
+
+  try {
+    user = await prisma.user.create({
+      data: {
+        name: parsed.data.name,
+        email: normalizedEmail,
+        passwordHash,
+        role: UserRole.USER,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
+    });
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+      return {
+        success: false,
+        message: "Bu email adresi zaten kayitli.",
+        errors: {
+          email: ["Bu email adresi zaten kayitli."],
+        },
+        values: {
+          name: parsed.data.name,
+          email: normalizedEmail,
+        },
+      };
+    }
+
+    throw error;
+  }
 
   try {
     await createNotification({
