@@ -9,7 +9,6 @@ import type { Category } from "@/types/category";
 import { smoothScrollToTop } from "@/utils/smoothScrollToTop";
 
 import { Container } from "./Container";
-import { ThemeToggle } from "./ThemeToggle";
 
 type HeaderProps = {
   categories: Category[];
@@ -92,7 +91,6 @@ export function Header({ categories }: HeaderProps) {
             >
               Yeni Icerikler
             </Link>
-            <ThemeToggle />
             <UserMenu />
           </div>
 
@@ -139,9 +137,6 @@ export function Header({ categories }: HeaderProps) {
                 </Link>
               ))}
             </nav>
-            <div className="border-t border-[#f1e6dd] pt-4">
-              <ThemeToggle compact />
-            </div>
             <div className="border-t border-[#f1e6dd] pt-4">
               <UserMenu compact onNavigate={() => setIsOpen(false)} />
             </div>
