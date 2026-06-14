@@ -12,6 +12,7 @@ type CommentSectionProps = {
 
 export async function CommentSection({ postId, postSlug }: CommentSectionProps) {
   const [session, comments] = await Promise.all([auth(), getCommentsByPostId(postId)]);
+  const commentCount = comments.reduce((total, comment) => total + 1 + comment.replies.length, 0);
 
   return (
     <section className="space-y-6">
@@ -25,7 +26,7 @@ export async function CommentSection({ postId, postSlug }: CommentSectionProps) 
           </h2>
         </div>
         <p className="rounded-full border border-[#f1e6dd] bg-white px-4 py-2 text-sm font-semibold text-[#4b5563]">
-          {comments.length} yorum
+          {commentCount} yorum
         </p>
       </div>
 
@@ -35,7 +36,13 @@ export async function CommentSection({ postId, postSlug }: CommentSectionProps) 
         <LoginToComment />
       )}
 
-      <CommentList comments={comments} isAuthenticated={Boolean(session?.user)} />
+      <CommentList
+        comments={comments}
+        currentUserId={session?.user?.id ?? null}
+        isAuthenticated={Boolean(session?.user)}
+        postId={postId}
+        postSlug={postSlug}
+      />
     </section>
   );
 }

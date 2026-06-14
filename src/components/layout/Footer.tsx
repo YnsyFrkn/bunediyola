@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { categories } from "@/data/categories";
+import type { Category } from "@/types/category";
 
 import { Container } from "./Container";
 
@@ -14,7 +14,11 @@ const siteLinks = [
   { href: "/reklam-ve-is-birligi", label: "Reklam ve Is Birligi" },
 ];
 
-export function Footer() {
+type FooterProps = {
+  categories: Category[];
+};
+
+export function Footer({ categories }: FooterProps) {
   return (
     <footer className="mt-16 border-t border-black/5 bg-[#111827] text-white">
       <Container className="grid gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">

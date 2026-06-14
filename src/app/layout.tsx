@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Serif_Display, Manrope } from "next/font/google";
 
 import { AppShell } from "@/components/layout/AppShell";
+import { getPublicCategories } from "@/lib/content";
 import { getAbsoluteImageUrl, getSiteUrl, siteDescription, siteName } from "@/lib/site";
 
 import "./globals.css";
@@ -52,11 +53,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const categories = await getPublicCategories();
+
   return (
     <html
       lang="tr"
@@ -66,7 +69,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#fffbf7] text-[#111827] antialiased">
         <div className="relative flex min-h-screen flex-col">
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_top_left,_rgba(251,146,60,0.22),_transparent_38%),radial-gradient(circle_at_top_right,_rgba(251,191,36,0.18),_transparent_28%),linear-gradient(180deg,_#fff7ed_0%,_#fffbf7_55%,_#fffbf7_100%)]" />
-          <AppShell>{children}</AppShell>
+          <AppShell categories={categories}>{children}</AppShell>
         </div>
       </body>
     </html>

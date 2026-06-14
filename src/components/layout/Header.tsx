@@ -5,12 +5,16 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { UserMenu } from "@/components/auth/UserMenu";
-import { categories } from "@/data/categories";
+import type { Category } from "@/types/category";
 import { smoothScrollToTop } from "@/utils/smoothScrollToTop";
 
 import { Container } from "./Container";
 
-export function Header() {
+type HeaderProps = {
+  categories: Category[];
+};
+
+export function Header({ categories }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [desktopQuery, setDesktopQuery] = useState("");
   const [mobileQuery, setMobileQuery] = useState("");

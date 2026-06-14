@@ -5,9 +5,18 @@ import { CommentItem } from "./CommentItem";
 type CommentListProps = {
   comments: PublicCommentRecord[];
   isAuthenticated: boolean;
+  currentUserId: string | null;
+  postId: string;
+  postSlug: string;
 };
 
-export function CommentList({ comments, isAuthenticated }: CommentListProps) {
+export function CommentList({
+  comments,
+  isAuthenticated,
+  currentUserId,
+  postId,
+  postSlug,
+}: CommentListProps) {
   if (comments.length === 0) {
     return (
       <div className="rounded-[28px] border border-dashed border-[#fdba74] bg-[#fff7ed] p-6 text-center">
@@ -22,7 +31,14 @@ export function CommentList({ comments, isAuthenticated }: CommentListProps) {
   return (
     <div className="space-y-4">
       {comments.map((comment) => (
-        <CommentItem key={comment.id} comment={comment} isAuthenticated={isAuthenticated} />
+        <CommentItem
+          key={comment.id}
+          comment={comment}
+          currentUserId={currentUserId}
+          isAuthenticated={isAuthenticated}
+          postId={postId}
+          postSlug={postSlug}
+        />
       ))}
     </div>
   );

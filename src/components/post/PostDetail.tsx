@@ -16,6 +16,7 @@ import { formatReadingTime } from "@/utils/readingTime";
 
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
+import { PostViewCount } from "./PostViewCount";
 
 type PostDetailProps = {
   post: Post;
@@ -55,6 +56,7 @@ export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
               </span>
             ) : null}
             <span className="text-sm text-[#6b7280]">Yazar: {post.author}</span>
+            <PostViewCount postId={post.id} initialCount={post.viewCount} />
           </div>
 
           <div className="space-y-4">

@@ -197,6 +197,19 @@ export function getMockPostBySlug(slug: string, options?: { includeDeleted?: boo
   return post;
 }
 
+export function incrementMockPostViewCount(id: string) {
+  const post = getMockPostById(id);
+
+  if (!post || post.status !== "PUBLISHED") {
+    return null;
+  }
+
+  post.viewCount += 1;
+  post.updatedAt = new Date();
+
+  return post.viewCount;
+}
+
 export function createMockPost(input: {
   title: string;
   slug: string;

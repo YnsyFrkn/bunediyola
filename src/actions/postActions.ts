@@ -12,6 +12,7 @@ import {
   getMockPostById,
   getMockPostBySlug,
   getMockPosts,
+  incrementMockPostViewCount,
   restoreMockPost,
   softDeleteMockPost,
   type PostRecord,
@@ -95,6 +96,40 @@ export async function getPublishedPosts(): Promise<PostRecord[]> {
   const posts = await getPosts();
 
   return posts.filter((post: PostRecord) => post.status === "PUBLISHED");
+}
+
+export async function incrementPostViewCount(postId: string) {
+  if (!process.env.DATABASE_URL) {
+    return incrementMockPostViewCount(postId);
+  }
+
+  const post = await prisma.post.updateMany({
+    where: {
+      id: postId,
+      status: "PUBLISHED",
+      deletedAt: null,
+    },
+    data: {
+      viewCount: {
+        increment: 1,
+      },
+    },
+  });
+
+  if (post.count === 0) {
+    return null;
+  }
+
+  const updatedPost = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+    select: {
+      viewCount: true,
+    },
+  });
+
+  return updatedPost?.viewCount ?? null;
 }
 
 export async function createPost(_prevState: FormState, formData: FormData): Promise<FormState> {

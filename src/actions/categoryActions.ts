@@ -133,7 +133,7 @@ export async function createCategory(_prevState: FormState, formData: FormData):
 
   revalidatePath("/admin");
   revalidatePath("/admin/categories");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   revalidatePath("/kategori/[slug]", "page");
   revalidatePath("/yazi/[slug]", "page");
 
@@ -186,7 +186,7 @@ export async function updateCategory(
   revalidatePath("/admin");
   revalidatePath("/admin/categories");
   revalidatePath(`/admin/categories/${id}/edit`);
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   revalidatePath("/kategori/[slug]", "page");
   revalidatePath("/yazi/[slug]", "page");
 
@@ -237,7 +237,7 @@ export async function deleteCategory(id: string) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/categories");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   revalidatePath("/kategori/[slug]", "page");
   revalidatePath("/yazi/[slug]", "page");
 
@@ -266,7 +266,7 @@ export async function restoreCategory(id: string) {
 
   revalidatePath("/admin");
   revalidatePath("/admin/categories");
-  revalidatePath("/");
+  revalidatePath("/", "layout");
   revalidatePath("/kategori/[slug]", "page");
   revalidatePath("/yazi/[slug]", "page");
 
