@@ -11,6 +11,7 @@ const menuItems = [
   { href: "/admin", label: "Panel" },
   { href: "/admin/posts", label: "Yazilar" },
   { href: "/admin/categories", label: "Kategoriler" },
+  { href: "/admin/polls", label: "Anketler" },
   { href: "/admin/comments", label: "Yorumlar" },
   { href: "/admin/users", label: "Kullanicilar" },
   { href: "/admin/notifications", label: "Bildirimler" },

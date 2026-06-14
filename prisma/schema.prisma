@@ -36,6 +36,7 @@ model Post {
   reactions  PostReaction[]
   favorites  Favorite[]
   reports    Report[]
+  polls      Poll[]
   postTags   PostTag[]
   deletedAt  DateTime?
   createdAt  DateTime   @default(now())
@@ -80,6 +81,7 @@ model User {
   reactions    PostReaction[]
   favorites    Favorite[]
   reports      Report[]
+  pollVotes    PollVote[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
@@ -143,6 +145,48 @@ model PostReaction {
 
   @@unique([postId, userId])
   @@index([postId, type])
+  @@index([userId, createdAt])
+}
+
+model Poll {
+  id        String       @id @default(cuid())
+  question  String
+  isActive  Boolean      @default(true)
+  postId    String       @unique
+  post      Post         @relation(fields: [postId], references: [id], onDelete: Cascade)
+  options   PollOption[]
+  votes     PollVote[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@index([isActive, createdAt])
+}
+
+model PollOption {
+  id        String     @id @default(cuid())
+  text      String
+  sortOrder Int
+  pollId    String
+  poll      Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  votes     PollVote[]
+  createdAt DateTime   @default(now())
+
+  @@unique([pollId, sortOrder])
+  @@index([pollId])
+}
+
+model PollVote {
+  id        String     @id @default(cuid())
+  pollId    String
+  optionId  String
+  userId    String
+  poll      Poll       @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  option    PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+
+  @@unique([pollId, userId])
+  @@index([optionId])
   @@index([userId, createdAt])
 }
 

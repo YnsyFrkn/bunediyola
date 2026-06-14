@@ -7,12 +7,14 @@ import {
   getPostReactionCounts,
   getUserPostReaction,
 } from "@/actions/postReactionActions";
+import { getActivePollForPost } from "@/actions/pollActions";
 import { CommentSection } from "@/components/comments/CommentSection";
 import { FavoriteButton } from "@/components/favorite/FavoriteButton";
 import { LikeButton } from "@/components/like/LikeButton";
 import { ShareButtons } from "@/components/post/ShareButtons";
 import { ReportButton } from "@/components/reports/ReportButton";
 import { PostReactionPanel } from "@/components/reaction/PostReactionPanel";
+import { PollCard } from "@/components/poll/PollCard";
 import { auth } from "@/lib/auth";
 import { getAbsoluteUrl } from "@/lib/site";
 import type { Post } from "@/types/post";
@@ -31,13 +33,14 @@ type PostDetailProps = {
 export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
   const session = await auth();
   const readingTime = post.readingTimeMinutes;
-  const [likeCount, initialLiked, initialFavorited, reactionCounts, selectedReaction] =
+  const [likeCount, initialLiked, initialFavorited, reactionCounts, selectedReaction, poll] =
     await Promise.all([
     getLikeCount(post.id),
     session?.user ? isPostLikedByUser(post.id, session.user.id) : Promise.resolve(false),
     session?.user ? isPostFavoritedByUser(post.id, session.user.id) : Promise.resolve(false),
     getPostReactionCounts(post.id),
     session?.user ? getUserPostReaction(post.id, session.user.id) : Promise.resolve(null),
+    getActivePollForPost(post.id, session?.user?.id),
   ]);
 
   return (
@@ -101,6 +104,19 @@ export async function PostDetail({ post, relatedPosts }: PostDetailProps) {
             initialSelectedType={selectedReaction}
             isAuthenticated={Boolean(session?.user)}
           />
+
+          {poll ? (
+            <PollCard
+              pollId={poll.id}
+              question={poll.question}
+              initialState={{
+                selectedOptionId: poll.selectedOptionId,
+                totalVotes: poll.totalVotes,
+                options: poll.options,
+              }}
+              isAuthenticated={Boolean(session?.user)}
+            />
+          ) : null}
 
           <ShareButtons
             title={post.title}

@@ -59,9 +59,9 @@ karsilastirarak guncel durumu tek yerde toplar.
 
 ### Faz 3 - Anket
 
-- Poll, PollOption ve PollVote modelleri.
-- Oy verme, tekrar oy engeli ve sonuc yuzdeleri.
-- Admin anket yonetimi.
+- [Tamamlandi] Poll, PollOption ve PollVote modelleri.
+- [Tamamlandi] Oy verme, tekrar oy engeli ve sonuc yuzdeleri.
+- [Tamamlandi] Admin anket olusturma, aktif/pasif yapma, sonuc gorme ve silme.
 
 ### Faz 4 - Blok Icerik Editoru
 
