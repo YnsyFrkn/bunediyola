@@ -11,6 +11,19 @@ type SendWelcomeEmailInput = {
   loginUrl: string;
 };
 
+type MailFailureReason =
+  | "not_configured"
+  | "authentication_failed"
+  | "connection_failed"
+  | "timeout"
+  | "unknown";
+
+type MailError = Error & {
+  code?: string;
+  responseCode?: number;
+  command?: string;
+};
+
 function getRequiredEnv(name: string) {
   const value = process.env[name];
 
@@ -69,11 +82,30 @@ function createMailTransporter() {
   });
 }
 
+function getMailFailureReason(error: unknown): MailFailureReason {
+  const mailError = error as MailError;
+
+  if (mailError.responseCode === 535 || mailError.code === "EAUTH") {
+    return "authentication_failed";
+  }
+
+  if (mailError.code === "ETIMEDOUT" || mailError.code === "ESOCKET") {
+    return "timeout";
+  }
+
+  if (mailError.code === "ECONNECTION" || mailError.code === "ECONNREFUSED") {
+    return "connection_failed";
+  }
+
+  return "unknown";
+}
+
 export async function verifyMailConnection() {
   if (!isMailConfigured()) {
     return {
       configured: false,
       connected: false,
+      reason: "not_configured" as const,
     };
   }
 
@@ -85,6 +117,7 @@ export async function verifyMailConnection() {
     return {
       configured: true,
       connected: true,
+      reason: null,
     };
   } catch (error) {
     console.error("SMTP baglanti dogrulamasi basarisiz", error);
@@ -92,6 +125,46 @@ export async function verifyMailConnection() {
     return {
       configured: true,
       connected: false,
+      reason: getMailFailureReason(error),
+    };
+  } finally {
+    transporter.close();
+  }
+}
+
+export async function sendMailHealthTestEmail(to: string) {
+  const transporter = createMailTransporter();
+
+  try {
+    await transporter.sendMail({
+      from: getRequiredEnv("SMTP_FROM"),
+      to,
+      subject: "bunediyola email testi",
+      text: [
+        "Merhaba,",
+        "",
+        "Bu mesaj bunediyola email servisinin calistigini dogrulamak icin gonderildi.",
+        "Hos geldin ve sifre sifirlama mailleri artik gonderilebilir.",
+      ].join("\n"),
+      html: `
+        <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.6;">
+          <h1 style="font-size: 24px;">Email servisi hazir</h1>
+          <p>Bu mesaj bunediyola email servisinin calistigini dogrulamak icin gonderildi.</p>
+          <p>Hos geldin ve sifre sifirlama mailleri artik gonderilebilir.</p>
+        </div>
+      `,
+    });
+
+    return {
+      sent: true as const,
+      reason: null,
+    };
+  } catch (error) {
+    console.error("SMTP test emaili gonderilemedi", error);
+
+    return {
+      sent: false as const,
+      reason: getMailFailureReason(error),
     };
   } finally {
     transporter.close();

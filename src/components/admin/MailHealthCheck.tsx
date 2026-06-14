@@ -4,24 +4,55 @@ import { useState } from "react";
 
 type MailHealthState = "idle" | "checking" | "connected" | "failed";
 
+type MailFailureReason =
+  | "not_configured"
+  | "authentication_failed"
+  | "connection_failed"
+  | "timeout"
+  | "unknown";
+
+const failureMessages: Record<MailFailureReason, string> = {
+  not_configured: "Railway SMTP degiskenlerinden biri eksik.",
+  authentication_failed:
+    "Gmail SMTP_USER veya uygulama sifresini kabul etmedi. Ikisinin ayni Google hesabina ait oldugunu kontrol et.",
+  connection_failed: "Railway Gmail sunucusuna baglanamadi. SMTP host ve port ayarlarini kontrol et.",
+  timeout: "Gmail baglantisi zaman asimina ugradi. Biraz sonra yeniden dene.",
+  unknown: "SMTP testi bilinmeyen bir hatayla tamamlanamadi. Railway loglarini kontrol et.",
+};
+
 export function MailHealthCheck() {
   const [state, setState] = useState<MailHealthState>("idle");
+  const [failureReason, setFailureReason] = useState<MailFailureReason | null>(null);
 
   async function checkMail() {
     setState("checking");
+    setFailureReason(null);
 
     try {
       const response = await fetch("/api/admin/mail-health", {
+        method: "POST",
         cache: "no-store",
       });
       const result = (await response.json()) as {
         mail?: {
           connected?: boolean;
+          reason?: MailFailureReason | null;
+        };
+        delivery?: {
+          sent?: boolean;
+          reason?: MailFailureReason | null;
         };
       };
 
-      setState(response.ok && result.mail?.connected ? "connected" : "failed");
+      if (response.ok && result.mail?.connected && result.delivery?.sent) {
+        setState("connected");
+        return;
+      }
+
+      setFailureReason(result.delivery?.reason ?? result.mail?.reason ?? "unknown");
+      setState("failed");
     } catch {
+      setFailureReason("unknown");
       setState("failed");
     }
   }
@@ -40,10 +71,10 @@ export function MailHealthCheck() {
       </h2>
       <p className="mt-3 text-sm leading-7 text-[#6b7280]">
         {state === "connected"
-          ? "Hos geldin ve sifre sifirlama mailleri gonderilebilir."
+          ? "Test maili admin email adresine gonderildi. Hos geldin ve sifre sifirlama mailleri hazir."
           : state === "failed"
-            ? "Railway SMTP ayarlarini ve Gmail App Password degerini kontrol et."
-            : "Gmail kullanici adi ve App Password bilgilerinin kabul edildigini test eder."}
+            ? failureMessages[failureReason ?? "unknown"]
+            : "Gmail baglantisini dogrular ve admin email adresine gercek bir test mesaji gonderir."}
       </p>
       <button
         type="button"
@@ -51,7 +82,7 @@ export function MailHealthCheck() {
         disabled={state === "checking"}
         className="mt-4 inline-flex min-h-11 items-center rounded-full bg-[#111827] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#ea580c] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {state === "checking" ? "Kontrol ediliyor..." : "SMTP Baglantisini Test Et"}
+        {state === "checking" ? "Kontrol ediliyor..." : "SMTP ve Test Mailini Kontrol Et"}
       </button>
     </article>
   );
